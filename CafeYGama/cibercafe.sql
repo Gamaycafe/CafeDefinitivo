@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-05-2016 a las 08:16:27
+-- Tiempo de generación: 19-05-2016 a las 18:53:11
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `conexion` (
 --
 
 INSERT INTO `conexion` (`Numero_Conexion`, `Codigo_Ordenador`, `Hora_Inicio`, `Hora_Final`, `DNI`) VALUES
-(1, '1234ABC', '00:00:00', '00:00:00', '99999999J'),
-(2, '1234ABD', '00:00:00', '00:00:00', '99999999K');
+(1, 'AAA123', '00:00:00', '00:00:00', '99999999J'),
+(2, 'BBB123', '00:00:00', '00:00:00', '99999999K');
 
 -- --------------------------------------------------------
 
@@ -129,10 +129,22 @@ INSERT INTO `factura_productos` (`Numero_Factura`, `Codigo_Producto`, `Cantidad`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ordenador`
+-- Estructura de tabla para la tabla `ordenadores`
 --
--- en uso(#1033 - Incorrect information in file: '.\cibercafe\ordenador.frm')
--- Error leyendo datos: (#1033 - Incorrect information in file: '.\cibercafe\ordenador.frm')
+
+CREATE TABLE IF NOT EXISTS `ordenadores` (
+  `Codigo_Ordenador` varchar(9) NOT NULL,
+  `Contador` int(11) NOT NULL,
+  PRIMARY KEY (`Codigo_Ordenador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ordenadores`
+--
+
+INSERT INTO `ordenadores` (`Codigo_Ordenador`, `Contador`) VALUES
+('AAA123', 10),
+('BBB123', 50);
 
 -- --------------------------------------------------------
 
@@ -164,10 +176,25 @@ INSERT INTO `productos` (`Codigo_Producto`, `Nombre_Proveedor`, `Tipo_de_Product
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Estructura de tabla para la tabla `proveedores`
 --
--- en uso(#1033 - Incorrect information in file: '.\cibercafe\proveedor.frm')
--- Error leyendo datos: (#1033 - Incorrect information in file: '.\cibercafe\proveedor.frm')
+
+CREATE TABLE IF NOT EXISTS `proveedores` (
+  `Nombre_Proveedor` varchar(32) NOT NULL,
+  `Direccion` varchar(32) NOT NULL,
+  `Telefono` int(9) NOT NULL,
+  PRIMARY KEY (`Nombre_Proveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`Nombre_Proveedor`, `Direccion`, `Telefono`) VALUES
+('COCACOLA', 'CALLE TRAMONTA', 914537686),
+('CRUZCAMPO', 'CALLE MONTAÑA', 912864906),
+('FONTBELLA', 'CALLE GELIDA', 91678935),
+('NETSLE', 'CALLE BONIATO', 97234674);
 
 -- --------------------------------------------------------
 
@@ -201,8 +228,8 @@ INSERT INTO `usuarios` (`Nombre`, `Contraseña`, `DNI`, `Codigo_Socio`) VALUES
 -- Filtros para la tabla `conexion`
 --
 ALTER TABLE `conexion`
-  ADD CONSTRAINT `conexion_ibfk_2` FOREIGN KEY (`Codigo_Ordenador`) REFERENCES `ordenador` (`Codigo_Ordenador`),
-  ADD CONSTRAINT `conexion_ibfk_3` FOREIGN KEY (`DNI`) REFERENCES `usuarios` (`DNI`) ;
+  ADD CONSTRAINT `conexion_ibfk_2` FOREIGN KEY (`DNI`) REFERENCES `usuarios` (`DNI`),
+  ADD CONSTRAINT `conexion_ibfk_1` FOREIGN KEY (`Codigo_Ordenador`) REFERENCES `ordenadores` (`Codigo_Ordenador`);
 
 --
 -- Filtros para la tabla `factura`
@@ -222,7 +249,7 @@ ALTER TABLE `factura_productos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`Nombre_Proveedor`) REFERENCES `proveedor` (`Nombre_Proveedor`);
+  ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`Nombre_Proveedor`) REFERENCES `proveedores` (`Nombre_Proveedor`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

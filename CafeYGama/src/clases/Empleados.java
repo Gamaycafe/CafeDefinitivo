@@ -19,7 +19,7 @@ public class Empleados {
 			String cargo, int numero_SS) {
 		
 		Codigo_Empleado = codigo_Empleado;
-		DNI = dNI;
+		DNI = DNI;
 		Nombre = nombre;
 		Apellido = apellido;
 		Direccion = direccion;

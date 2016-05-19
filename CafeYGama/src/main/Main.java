@@ -18,26 +18,95 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+
 		System.out.println("---------------------------");
 		System.out.println("Bienvenidos a Gama y Cafe");
 		System.out.println("---------------------------");
 		System.out.println();
-		System.out.println("Conectarse como Socio->1");
-		System.out.println();
-		System.out.println("Conectarse como Usuario->2");
-		int opcion=sc.nextInt();
-			        switch (opcion) {
-	            case 1: 
-	            	System.out.println("Regis");
+		System.out.println("Acceder zona Cliente=>1");
+		System.out.println("Acceder zona Empleado=>2");
 
-	                     break;
-	            case 2:  
-//
-	                     break;
+		int opcionInicial=sc.nextInt();
+
+		switch (opcionInicial) {
+		case 1:
+			
+			System.out.println("\n1.Conectarse como socio\n2.Conectarse como Usuario \n3.Salir");
+
+			int opcion=sc.nextInt();
+			switch (opcion) {
+			case 1: 
+				System.out.println("Zona Socio\n");
+				System.out.println("\n1.Iniciar Sesion\n2.Registro \n3.Salir");
+				int opcionSocio=sc.nextInt();
+				switch (opcionSocio) {
+				case 1:
+					System.out.println("Inicio Sesion");
+					break;
+
+				case 2:
+					System.out.println("Registro");
+					break;
+				}
+
+				break;
+			case 2:  
+				System.out.println("Zona Usuario\n");
+				System.out.println("\n1.Iniciar Sesion\n2.Registro \n3.Salir");
+				int opcionUsuario=sc.nextInt();
+				switch (opcionUsuario) {
+				case 1:
+					System.out.println("Inicio Sesion");
+					break;
+				case 2:
+					System.out.println("Registro");
+					break;
+				}
 
 
-	           
-	        }
+			}
+			break;
+		case 2:
+			
+			System.out.println("\n1.Conectarse a zona Cafeteria \n2.Conectarse a zona Cibercafe \n3.Salir");
+
+			int opcionCliente=sc.nextInt();
+			switch (opcionCliente) {
+			case 1: 
+				System.out.println("Zona cibercafe\n");
+				System.out.println("\n1.Iniciar Sesion \n2.Salir");
+				int opcionSocio=sc.nextInt();
+				switch (opcionSocio) {
+				case 1:
+					System.out.println("Inicio Sesion");
+					break;
+
+				case 2:
+					System.out.println("Estas saliendo");
+					break;
+				}
+
+				break;
+			case 2:  
+				System.out.println("Zona cafeteria\n");
+				System.out.println("\n1.Iniciando Sesion \n2.Salir");
+				int opcionUsuario=sc.nextInt();
+				switch (opcionUsuario) {
+				case 1:
+					System.out.println("Iniciando Sesion");
+					break;
+				case 2:
+					System.out.println("Estas saliendo");
+					break;
+				}
+
+
+			}
+			break;
+		default:
+			break;
+		}
+
 
 	}
 
