@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-05-2016 a las 07:15:56
+-- Tiempo de generación: 19-05-2016 a las 08:16:27
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -28,22 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `conexion` (
   `Numero_Conexion` int(11) NOT NULL,
-  `Codigo_Socio` varchar(32) NOT NULL,
   `Codigo_Ordenador` varchar(32) NOT NULL,
   `Hora_Inicio` time NOT NULL,
   `Hora_Final` time NOT NULL,
+  `DNI` varchar(9) NOT NULL,
   PRIMARY KEY (`Numero_Conexion`),
-  KEY `Codigo_Socio` (`Codigo_Socio`,`Codigo_Ordenador`),
-  KEY `Codigo_Ordenador` (`Codigo_Ordenador`)
+  KEY `Codigo_Socio` (`Codigo_Ordenador`),
+  KEY `Codigo_Ordenador` (`Codigo_Ordenador`),
+  KEY `DNI` (`DNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `conexion`
 --
 
-INSERT INTO `conexion` (`Numero_Conexion`, `Codigo_Socio`, `Codigo_Ordenador`, `Hora_Inicio`, `Hora_Final`) VALUES
-(1, 'ABC123', '1234ABC', '00:00:00', '00:00:00'),
-(2, 'ABC124', '1234ABD', '00:00:00', '00:00:00');
+INSERT INTO `conexion` (`Numero_Conexion`, `Codigo_Ordenador`, `Hora_Inicio`, `Hora_Final`, `DNI`) VALUES
+(1, '1234ABC', '00:00:00', '00:00:00', '99999999J'),
+(2, '1234ABD', '00:00:00', '00:00:00', '99999999K');
 
 -- --------------------------------------------------------
 
@@ -86,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `Numero_Conexion` int(11) NOT NULL,
   `Importe` decimal(10,0) NOT NULL,
   `Fecha` date NOT NULL,
+  `Descuento` int(11) NOT NULL,
   PRIMARY KEY (`Numero_Factura`),
   KEY `Codigo_Empleado` (`Codigo_Empleado`,`Numero_Conexion`),
   KEY `Numero_Conexion` (`Numero_Conexion`)
@@ -95,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `factura` (
 -- Volcado de datos para la tabla `factura`
 --
 
-INSERT INTO `factura` (`Numero_Factura`, `Codigo_Empleado`, `Numero_Conexion`, `Importe`, `Fecha`) VALUES
-(1, '1ABC', 1, '15', '2016-05-01'),
-(2, '2ABC', 2, '12', '2016-05-02');
+INSERT INTO `factura` (`Numero_Factura`, `Codigo_Empleado`, `Numero_Conexion`, `Importe`, `Fecha`, `Descuento`) VALUES
+(1, '1ABC', 1, '15', '2016-05-01', 15),
+(2, '2ABC', 2, '12', '2016-05-02', 0);
 
 -- --------------------------------------------------------
 
@@ -144,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `Tipo_de_Productos` varchar(32) NOT NULL,
   `Precio` decimal(11,2) NOT NULL,
   `Nombre` varchar(32) NOT NULL,
+  `Cantidad` int(11) NOT NULL,
   PRIMARY KEY (`Codigo_Producto`),
   KEY `Nombre_Proveedor` (`Nombre_Proveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -152,11 +155,11 @@ CREATE TABLE IF NOT EXISTS `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`Codigo_Producto`, `Nombre_Proveedor`, `Tipo_de_Productos`, `Precio`, `Nombre`) VALUES
-('A1', 'FONTBELLA', 'AGUA', '0.50', 'AGUA'),
-('C1', 'COCACOLA', 'REFRESCO', '1.00', 'COCACOLA'),
-('C2', 'CRUZCAMPO', 'ALCOHOL', '1.00', 'CERVEZA'),
-('C3', 'NETSLE', 'CAFETERIA', '1.00', 'CAFE SOLO');
+INSERT INTO `productos` (`Codigo_Producto`, `Nombre_Proveedor`, `Tipo_de_Productos`, `Precio`, `Nombre`, `Cantidad`) VALUES
+('A1', 'FONTBELLA', 'AGUA', '0.50', 'AGUA', 0),
+('C1', 'COCACOLA', 'REFRESCO', '1.00', 'COCACOLA', 0),
+('C2', 'CRUZCAMPO', 'ALCOHOL', '1.00', 'CERVEZA', 0),
+('C3', 'NETSLE', 'CAFETERIA', '1.00', 'CAFE SOLO', 0);
 
 -- --------------------------------------------------------
 
@@ -173,23 +176,22 @@ INSERT INTO `productos` (`Codigo_Producto`, `Nombre_Proveedor`, `Tipo_de_Product
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `Codigo_Socio` varchar(32) NOT NULL,
-  `DNI` varchar(9) NOT NULL,
   `Nombre` varchar(32) NOT NULL,
   `Contraseña` varchar(32) NOT NULL,
-  PRIMARY KEY (`Codigo_Socio`),
-  UNIQUE KEY `DNI` (`DNI`)
+  `DNI` varchar(9) NOT NULL,
+  `Codigo_Socio` varchar(32) NOT NULL,
+  PRIMARY KEY (`DNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`Codigo_Socio`, `DNI`, `Nombre`, `Contraseña`) VALUES
-('ABC123', '11111111A', 'JAIME', 'EMIAJ'),
-('ABC124', '22222222B', 'VICTOR', 'ROTCIV'),
-('ABD123', '33333333D', 'MIGUEL', 'LEUGIM'),
-('ADB123', '44444444U', 'CESAR', 'RASEC');
+INSERT INTO `usuarios` (`Nombre`, `Contraseña`, `DNI`, `Codigo_Socio`) VALUES
+('VICTOR', 'ROTCIV', '99999999J', 'AAA1'),
+('CESAR', 'RASEC', '99999999K', 'AAA2'),
+('MIGUEL', 'LEUGIM', '99999999L', 'AAA3'),
+('JAIME', 'EMIAJ', '99999999P', 'AAA4');
 
 --
 -- Restricciones para tablas volcadas
@@ -199,8 +201,8 @@ INSERT INTO `usuarios` (`Codigo_Socio`, `DNI`, `Nombre`, `Contraseña`) VALUES
 -- Filtros para la tabla `conexion`
 --
 ALTER TABLE `conexion`
-  ADD CONSTRAINT `conexion_ibfk_1` FOREIGN KEY (`Codigo_Socio`) REFERENCES `usuarios` (`Codigo_Socio`),
-  ADD CONSTRAINT `conexion_ibfk_2` FOREIGN KEY (`Codigo_Ordenador`) REFERENCES `ordenador` (`Codigo_Ordenador`);
+  ADD CONSTRAINT `conexion_ibfk_2` FOREIGN KEY (`Codigo_Ordenador`) REFERENCES `ordenador` (`Codigo_Ordenador`),
+  ADD CONSTRAINT `conexion_ibfk_3` FOREIGN KEY (`DNI`) REFERENCES `usuarios` (`DNI`) ;
 
 --
 -- Filtros para la tabla `factura`
