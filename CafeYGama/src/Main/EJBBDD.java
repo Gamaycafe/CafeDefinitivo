@@ -1,4 +1,4 @@
-package EJBBDD;
+package Main;
 
 public class EJBBDD {
 
