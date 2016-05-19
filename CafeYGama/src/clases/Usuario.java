@@ -1,10 +1,10 @@
 package clases;
 
 public class Usuario {
-	String Codigo_Socio;
-	String DNI;
-	String Nombre;
-	String Contraseña;
+	private String Codigo_Socio;
+	private String DNI;
+	private String Nombre;
+	private String Contraseña;
 	
 	public Usuario(String dni, String nombre, String contraseña) {
 		
@@ -17,7 +17,6 @@ public class Usuario {
 	public String getCodigo_Socio() {
 		return Codigo_Socio;
 	}
-
 	public void setCodigo_Socio(String codigo_Socio) {
 		Codigo_Socio = codigo_Socio;
 	}
@@ -25,7 +24,6 @@ public class Usuario {
 	public String getDNI() {
 		return DNI;
 	}
-
 	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
@@ -33,7 +31,6 @@ public class Usuario {
 	public String getNombre() {
 		return Nombre;
 	}
-
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
@@ -41,15 +38,14 @@ public class Usuario {
 	public String getContraseña() {
 		return Contraseña;
 	}
-
 	public void setContraseña(String contraseña) {
 		Contraseña = contraseña;
 	}
 
 	@Override
 	public String toString() {
-		return "Codigo_Socio: " + Codigo_Socio + ", DNI: " + DNI + ", Nombre: " + Nombre 
-				+ ", Contraseña: " + Contraseña;
+		return "Codigo_Socio: " + Codigo_Socio + ", DNI: " + DNI + ", Nombre: " 
+				+ Nombre + ", Contraseña: " + Contraseña;
 	}
 	
 	

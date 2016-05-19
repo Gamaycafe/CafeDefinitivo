@@ -1,8 +1,8 @@
 package clases;
 
 public class Ordenador {
-	String Codigo;
-	int Contador;
+	private String Codigo;
+	private int Contador;
 	
 	public Ordenador(String codigo_Ordenador, int contador) {
 		
@@ -13,7 +13,6 @@ public class Ordenador {
 	public String getCodigo() {
 		return Codigo;
 	}
-
 	public void setCodigo(String codigo_Ordenador) {
 		Codigo = codigo_Ordenador;
 	}
@@ -21,7 +20,6 @@ public class Ordenador {
 	public int getContador() {
 		return Contador;
 	}
-
 	public void setContador(int contador) {
 		Contador = contador;
 	}

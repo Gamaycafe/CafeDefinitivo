@@ -1,9 +1,9 @@
 package clases;
 
 public class Proveedor {
-	String Nombre;
-	String Direccion;
-	String Telefono;
+	private String Nombre;
+	private String Direccion;
+	private String Telefono;
 	
 	public Proveedor(String nombre, String direccion, String telefono) {
 		
