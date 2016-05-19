@@ -1,6 +1,6 @@
 package Main;
 
-public class EJBBDD {
+public class Main {
 
 	public static void main(String[] args) {
   //Probando Jaime Funciona?
