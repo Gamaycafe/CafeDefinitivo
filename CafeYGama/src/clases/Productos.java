@@ -6,15 +6,17 @@ public class Productos {
 	private String Tipo_de_Productos;
 	private int Precio;
 	private String Nombre;
+	private int Cantidad;
 	
 	public Productos(int cod_Productos, Proveedor nombre_Proveedor, 
-			String tipo_de_Productos, int precio, String nombre) {
+			String tipo_de_Productos, int precio, String nombre, int cantidad) {
 		
 		Cod_Productos = cod_Productos;
 		Nombre_Proveedor = nombre_Proveedor;
 		Tipo_de_Productos = tipo_de_Productos;
 		Precio = precio;
 		Nombre = nombre;
+		Cantidad = cantidad;
 	}
 
 	public int getCod_Productos() {
@@ -52,10 +54,17 @@ public class Productos {
 		Nombre = nombre;
 	}
 
+	public int getCantidad() {
+		return Cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		Cantidad = cantidad;
+	}
+
 	@Override
 	public String toString() {
 		return "Cod_Productos: " + Cod_Productos + ", Nombre_Proveedor: " 
 				+ Nombre_Proveedor + ", Tipo_de_Productos: " + Tipo_de_Productos 
-				+ ", Precio: " + Precio + ", Nombre: " + Nombre;
+				+ ", Precio: " + Precio + ", Nombre: " + Nombre + ", Cantidad: " + Cantidad;
 	}
 }

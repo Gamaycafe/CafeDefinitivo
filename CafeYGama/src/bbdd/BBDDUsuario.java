@@ -13,7 +13,9 @@ public class BBDDUsuario {
 	private static ResultSet reg;
 	
 	public static void crear(Usuario usuario, Connection c){
-		String cadena="INSERT INTO ordenador VALUES('" + usuario.getCodigo_Socio() + "','" + usuario.getDNI() + "','" + usuario.getNombre() + "','" + usuario.getContraseña() +"')"; 	
+		String cadena="INSERT INTO ordenador VALUES('" + usuario.getCodigo_Socio() 
+				+ "','" + usuario.getDNI() + "','" + usuario.getNombre() + "','" 
+				+ usuario.getContraseña() +"')"; 	
 
 		try{
 			s=c.createStatement();
