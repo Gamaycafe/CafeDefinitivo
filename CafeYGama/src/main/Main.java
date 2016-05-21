@@ -19,8 +19,14 @@ import java.sql.SQLException;
 import java.sql.*;
 
 public class Main {
-
-	public static void main(String[] args) {
+	
+	private static String _usuario="root";
+	private static String _pwd= "";
+	private static String _bd="cibercafe";
+	static String _url = "jdbc:mysql://localhost/"+_bd;
+	private Connection conn = null;
+	
+	public static void main(String[] args) throws SQLException {
 
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -32,6 +38,26 @@ public class Main {
 		    System.out.println(e.toString());
 
 		}
+		
+
+		try{
+			Class.forName("com.mysql.jdbc.Connection");
+			Connection conexion = DriverManager.getConnection (_url,_usuario,_pwd);
+			if(conexion != null)
+			{
+				System.out.println("Conexi-n a base de datos "+"jdbc:mysql://localhost/cibercafe"+" . . . Ok");
+			}
+		}
+		catch(SQLException ex)
+		{
+			System.out.println("Hubo un problema al intentar conecarse a la base de datos"+"jdbc:mysql://localhost/cibercafe");
+		}
+		catch(ClassNotFoundException ex)
+		{
+			System.out.println(ex);
+		}		
+	
+		
 		System.out.println("---------------------------");
 		System.out.println("Bienvenidos a Gama y Cafe");
 		System.out.println("---------------------------");
@@ -121,6 +147,11 @@ public class Main {
 		}
 
 
-	}
 
-}
+		
+		
+	}
+	
+	
+	}
+	
