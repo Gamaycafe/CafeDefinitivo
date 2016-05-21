@@ -14,11 +14,24 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 
+		Scanner sc = new Scanner(System.in);
+		try {
+		    Class.forName("com.mysql.jdbc.Driver").newInstance();
+		    System.out.println("Registro exitoso");
+
+		} catch (Exception e) {
+
+		    System.out.println(e.toString());
+
+		}
 		System.out.println("---------------------------");
 		System.out.println("Bienvenidos a Gama y Cafe");
 		System.out.println("---------------------------");
