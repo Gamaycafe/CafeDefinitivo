@@ -14,6 +14,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
+
+import bbdd.BaseDatos;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.*;
@@ -29,7 +32,8 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 
 		Scanner sc = new Scanner(System.in);
-		try {
+		
+		/*try {
 		    Class.forName("com.mysql.jdbc.Driver").newInstance();
 		    System.out.println("Registro exitoso");
 
@@ -55,8 +59,12 @@ public class Main {
 		catch(ClassNotFoundException ex)
 		{
 			System.out.println(ex);
-		}		
+		}		*/
 	
+		
+		BaseDatos mibase=new BaseDatos("cibercafe");
+		
+		mibase.abrir();
 		
 		System.out.println("---------------------------");
 		System.out.println("Bienvenidos a Gama y Cafe");
