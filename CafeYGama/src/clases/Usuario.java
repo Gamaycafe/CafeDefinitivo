@@ -6,9 +6,18 @@ public class Usuario {
 	private String Nombre;
 	private String Contraseña;
 	
-	public Usuario(String dni, String nombre, String contraseña) {
+	public Usuario(String dni, String contraseña) {
 		
 		Codigo_Socio = null;
+		DNI = dni;
+		Nombre = null;
+		Contraseña = contraseña;
+	}
+	
+	
+	public Usuario (String nombre,String dni, String contraseña, String codigoS) {
+		
+		Codigo_Socio = codigoS;
 		DNI = dni;
 		Nombre = nombre;
 		Contraseña = contraseña;
@@ -24,8 +33,8 @@ public class Usuario {
 	public String getDNI() {
 		return DNI;
 	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDNI(String DNI) {
+		DNI = DNI;
 	}
 
 	public String getNombre() {

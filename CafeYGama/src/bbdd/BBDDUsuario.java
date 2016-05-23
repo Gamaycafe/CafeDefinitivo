@@ -13,9 +13,9 @@ public class BBDDUsuario {
 	private static ResultSet reg;
 	
 	public static void crear(Usuario usuario, Connection c){
-		String cadena="INSERT INTO ordenador VALUES('" + usuario.getCodigo_Socio() 
-				+ "','" + usuario.getDNI() + "','" + usuario.getNombre() + "','" 
-				+ usuario.getContraseña() +"')"; 	
+		String cadena="INSERT INTO Usuarios VALUES('"+ usuario.getNombre() + "','"  + usuario.getContraseña() 
+				+ "','" + usuario.getDNI() + "','" 
+				+ usuario.getCodigo_Socio()+"')"; 	
 
 		try{
 			s=c.createStatement();
@@ -26,4 +26,24 @@ public class BBDDUsuario {
 			System.out.println(e.getMessage());
 		}
 	}
+
+	public static String buscarUsuario(Usuario u, Connection c){
+		
+		String cadena="SELECT Codigo_Socio FROM Usuarios WHERE DNI='" +u.getDNI() +"' AND Contraseña='" + u.getContraseña() +"'";
+		try{
+			s=c.createStatement();
+			reg=s.executeQuery(cadena);
+			if ( reg.next()){
+				String t=reg.getString(1);
+				s.close();
+				return t;
+			}
+			s.close();
+			return "";
+		}
+		catch ( SQLException e){
+			return null;
+			
+		}
+}
 }
