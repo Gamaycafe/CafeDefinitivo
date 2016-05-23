@@ -25,4 +25,12 @@ public class BBDDOrdenador {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public static void alta(Ordenador ordenador, Connection c){
+		
+	}
+	
+	public static void baja(Ordenador ordenador, Connection c){
+		
+	}
 }

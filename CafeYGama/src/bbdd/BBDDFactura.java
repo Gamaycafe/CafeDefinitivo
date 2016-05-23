@@ -12,7 +12,7 @@ public class BBDDFactura {
 	private static Connection c;
 	private static ResultSet reg;
 	
-	public static void crear(Factura factura, Connection c){
+	public static void crear (Factura factura, Connection c){
 		String cadena="INSERT INTO ordenador VALUES('" + factura.getNumero_Factura() 
 				+ "','" + factura.getCodigo_Empleado()+ "','" + factura.getNumero_Conexion() 
 				+ "','" + factura.getImporte() + "','" + factura.getFecha() + "','"
@@ -26,5 +26,13 @@ public class BBDDFactura {
 		catch ( SQLException e){
 			System.out.println(e.getMessage());
 		}
+	}
+	public boolean pagada (Factura factura, Connection c){
+		boolean certificar = false;
+		
+		return certificar;
+	}
+	public static void descuento (Factura factura, Connection c){
+		
 	}
 }
