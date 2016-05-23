@@ -87,57 +87,57 @@ public class Main {
 				System.out.println("\n1.Iniciar Sesion\n2.Registro \n3.Salir");
 				int opcionSocio=sc.nextInt();
 				sc.nextLine();
-//Prueba
+				//Prueba
 				switch (opcionSocio) {
 				case 1:
 					sc.nextLine();
 					System.out.println("Introduce DNI");
-					 nif=sc.nextLine();
+					nif=sc.nextLine();
 					System.out.println("Introduce Contraseña");
-					 passwd=sc.nextLine();
-					
-				
-				u = new Usuario(nif,passwd);
-				mibase.abrir();
-				codigo=BBDDUsuario.buscarUsuario(u, mibase.getConexion());
-				mibase.cerrar();
-				
-				if (codigo==null)
-					System.out.println("Por motivos técnicos no podemos obtener la información");
-				else
-					if (codigo.equals(""))
-						System.out.println("No es contacto");
+					passwd=sc.nextLine();
+
+
+					u = new Usuario(nif,passwd);
+					mibase.abrir();
+					codigo=BBDDUsuario.buscarUsuario(u, mibase.getConexion());
+					mibase.cerrar();
+
+					if (codigo==null)
+						System.out.println("Por motivos técnicos no podemos obtener la información");
 					else
-						System.out.println("Bienvenido a gama y cafe");
-				
-				
-			
-		
+						if (codigo.equals(""))
+							System.out.println("No es Socio");
+						else
+							System.out.println("Bienvenido a gama y cafe");
+
+
+
+
 					break;
 
 				case 2:
-					
+
 					System.out.println("Registro Socio");
 					sc.nextLine();
 					System.out.println("Introduce Nombre");
-					 String nombre=sc.nextLine();
-					 System.out.println("Introduce Contraseña");
-					 passwd=sc.nextLine();
+					String nombre=sc.nextLine();
+					System.out.println("Introduce Contraseña");
+					passwd=sc.nextLine();
 					System.out.println("Introduce DNI");
-					 nif=sc.nextLine();
-					
-					
-				
-				u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase());
-				mibase.abrir();
-				BBDDUsuario.crear(u, mibase.getConexion());
-				System.out.println(nombre+" Has sido registrado exitosamente");
-				mibase.cerrar();
-				
-			
-					
+					nif=sc.nextLine();
+
+
+
+					u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase(),"AAA");
+					mibase.abrir();
+					BBDDUsuario.crear(u, mibase.getConexion());
+					System.out.println(nombre+" ,has sido registrado exitosamente");
+					mibase.cerrar();
+
+
+
 					break;
-			}
+				}
 
 				break;
 			case 2:  
@@ -147,9 +147,46 @@ public class Main {
 				switch (opcionUsuario) {
 				case 1:
 					System.out.println("Inicio Sesion");
+					sc.nextLine();
+					System.out.println("Introduce DNI");
+					nif=sc.nextLine();
+					System.out.println("Introduce Contraseña");
+					passwd=sc.nextLine();
+
+
+					u = new Usuario(nif,passwd);
+					mibase.abrir();
+					codigo=BBDDUsuario.buscarUsuario(u, mibase.getConexion());
+					mibase.cerrar();
+
+					if (codigo==null)
+						System.out.println("Por motivos técnicos no podemos obtener la información");
+					else
+						if (codigo.equals(""))
+							System.out.println("Bienvenido a zona usuario");
+						else
+							System.out.println("Usted es socio, ¿quiere que le reedirija a la zona socio y asi pueda obtener el descuento? (S/N)");
 					break;
 				case 2:
-					System.out.println("Registro");
+
+					System.out.println("Registro Usuario");
+					sc.nextLine();
+					System.out.println("Introduce Nombre de usuario");
+					String nombre=sc.nextLine();
+					System.out.println("Introduce Contraseña");
+					passwd=sc.nextLine();
+					System.out.println("Introduce DNI");
+					nif=sc.nextLine();
+
+
+
+					u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase(),"");
+					mibase.abrir();
+					BBDDUsuario.crear(u, mibase.getConexion());
+					System.out.println(nombre+" ,has sido registrado exitosamente como usuario");
+					mibase.cerrar();
+
+
 					break;
 				}
 
@@ -199,11 +236,11 @@ public class Main {
 			break;
 		}
 
-}
-
-
-
 	}
+
+
+
+}
 
 
 
