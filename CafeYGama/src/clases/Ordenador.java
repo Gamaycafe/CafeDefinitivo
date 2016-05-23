@@ -5,6 +5,7 @@ public class Ordenador {
 	private int Contador;
 	
 	public Ordenador(int contador) {
+		//subir
 		String codigo_Ordenador="";
 			//declaro las variables del rango numérico que corresponde al alfabeto en Ascii
 			//Letras mayúsculas tenemos que usar el rango 65-90
