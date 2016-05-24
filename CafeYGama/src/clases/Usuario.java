@@ -1,10 +1,13 @@
 package clases;
 
+//@autor Jaime_Grisolía
+
 public class Usuario {
 	private String Codigo_Socio;
 	private String DNI;
 	private String Nombre;
 	private String Contraseña;
+	
 	
 	public Usuario(String dni, String contraseña) {
 		
@@ -15,7 +18,7 @@ public class Usuario {
 	}
 	
 	
-	public Usuario (String nombre,String dni, String contraseña, String codigoS) {
+	public Usuario (String nombre, String contraseña,String dni, String codigoS) {
 		
 		Codigo_Socio = codigoS;
 		DNI = dni;
@@ -52,11 +55,31 @@ public class Usuario {
 	}
 
 	@Override
+	
 	public String toString() {
 		return "Codigo_Socio: " + Codigo_Socio + ", DNI: " + DNI + ", Nombre: " 
 				+ Nombre + ", Contraseña: " + Contraseña;
 	}
 	
-	
+	public void generar_codigo(){
+		  String codigo="";
+		  //Declaro las variables del rango numérico que corresponde al alfabeto en Ascii
+		  //Letras mayúsculas tenemos que usar el rango 65-90
+		  int num1 = 65;
+		  int num2 = 95;
+		  char c = 0;
+		  // Realizamos el proceso 3 veces, generando una letra alatoria y la concatenamos a la cadena total llamada codigo_Ordeandor
+		  for (int i=1; i<=3; i++){
+		   int numAleatorio = (int)Math.floor(Math.random()*(num2 -num1)+num1);
+		   c = (char)numAleatorio;
+		   codigo += c;
+		  }
+		  // Realizamos el proceso 3 veces, generando un numero alatorio y la concatenamos a la cadena total llamada codigo_Ordeandor
+		  
+		   int numAleatorio = (int)Math.floor(Math.random()*(9 -0)+0);
+		   codigo += numAleatorio;
+		   
+		  setCodigo_Socio(codigo);
+		 }
 	
 }

@@ -1,5 +1,7 @@
 package bbdd;
 
+//@autor Jaime_Grisolía
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,4 +48,6 @@ public class BBDDUsuario {
 			
 		}
 }
+	
+
 }

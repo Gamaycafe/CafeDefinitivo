@@ -1,5 +1,7 @@
 package clases;
 
+//@autor Jaime_Grisolía
+
 public class Empleados {
 	private String Codigo_Empleado;
 	private String DNI;
@@ -8,18 +10,18 @@ public class Empleados {
 	private String Direccion;
 	private String Telefono;
 	private String Tipo_de_Contacto;
-	private String Antigüedad;
+	private int Antigüedad;
 	private int Sueldo;
 	private String Cargo;
-	private int Numero_SS;
-	
+	private String Numero_SS;
+
 	public Empleados(String codigo_Empleado, String dNI, String nombre, 
 			String apellido, String direccion, String telefono, 
-			String tipo_de_Contacto, String antigüedad, int sueldo, 
-			String cargo, int numero_SS) {
-		
+			String tipo_de_Contacto, int antigüedad, int sueldo, 
+			String cargo, String numero_SS) {
+
 		Codigo_Empleado = codigo_Empleado;
-		DNI = DNI;
+		DNI = dNI;
 		Nombre = nombre;
 		Apellido = apellido;
 		Direccion = direccion;
@@ -29,6 +31,12 @@ public class Empleados {
 		Sueldo = sueldo;
 		Cargo = cargo;
 		Numero_SS = numero_SS;
+	}
+
+	public Empleados(String codigo_Empleado) {
+
+		Codigo_Empleado = codigo_Empleado;
+
 	}
 
 	public String getCodigo_Empleado() {
@@ -80,10 +88,10 @@ public class Empleados {
 		Tipo_de_Contacto = tipo_de_Contacto;
 	}
 
-	public String getAntigüedad() {
+	public int getAntigüedad() {
 		return Antigüedad;
 	}
-	public void setAntigüedad(String antigüedad) {
+	public void setAntigüedad(int antigüedad) {
 		Antigüedad = antigüedad;
 	}
 
@@ -101,10 +109,10 @@ public class Empleados {
 		Cargo = cargo;
 	}
 
-	public int getNumero_SS() {
+	public String getNumero_SS() {
 		return Numero_SS;
 	}
-	public void setNumero_SS(int numero_SS) {
+	public void setNumero_SS(String numero_SS) {
 		Numero_SS = numero_SS;
 	}
 
@@ -116,5 +124,26 @@ public class Empleados {
 				+ Tipo_de_Contacto + ", Antigüedad: " + Antigüedad + ", Sueldo: " 
 				+ Sueldo + ", Cargo: " + Cargo + ", Numero_SS: " + Numero_SS;
 	}
-	
+
+	public void generar_codigo(){
+		String codigo="";
+		//Declaro las variables del rango numérico que corresponde al alfabeto en Ascii
+		//Letras mayúsculas tenemos que usar el rango 65-90
+		int num1 = 65;
+		int num2 = 95;
+		char c = 0;
+		// Realizamos el proceso 3 veces, generando una letra alatoria y la concatenamos a la cadena total llamada codigo_Ordeandor
+		int numAleatorio1 = (int)Math.floor(Math.random()*(9 -0)+0);
+		codigo += numAleatorio1;
+		for (int i=1; i<=3; i++){
+			int numAleatorio2 = (int)Math.floor(Math.random()*(num2 -num1)+num1);
+			c = (char)numAleatorio2;
+			codigo += c;
+		}
+		// Realizamos el proceso 3 veces, generando un numero alatorio y la concatenamos a la cadena total llamada codigo_Ordeandor
+
+
+
+		setCodigo_Empleado(codigo);
+	}
 }
