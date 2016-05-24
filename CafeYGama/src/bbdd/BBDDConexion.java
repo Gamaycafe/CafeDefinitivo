@@ -14,6 +14,7 @@ public class BBDDConexion {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	
 	public static void crear(Conexion conexion, Connection c){
 		String cadena="INSERT INTO ordenador VALUES('" + conexion.getNumero_Conexion() 
 				+ "','" + conexion.getCodigo_Ordenador() + "','" + conexion.getCodigo_Socio() 

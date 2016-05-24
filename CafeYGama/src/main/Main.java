@@ -1,6 +1,9 @@
 package main;
 
-// @autor Jaime_Grisolía
+/**
+ * @author: Jaime_Grisolia
+ * @version: 24/05/2016
+ */
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,6 +40,7 @@ public class Main {
 
 		BaseDatos mibase=new BaseDatos("cibercafe");
 		do{
+			//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL PRINCIPIO DEL PROGRAMA
 			do{opcionEmple=0;
 			opcionInicial=0;
 			opcion=0;
@@ -60,6 +64,7 @@ public class Main {
 			switch (opcionInicial) {
 			case 1:
 				do{
+					//ESTE BUCLE SERA UTILIZADO COMO VUELTA A LA SELECCION DEL TIPO DE CLIENTE
 					opcionEmple=0;
 					opcionInicial=0;
 					opcion=0;
@@ -75,7 +80,7 @@ public class Main {
 					switch (opcion) {
 					case 1: 
 						do{
-
+							//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL MENU DE SOCIOS
 
 							registroS=false;
 							System.out.println("Zona Socio\n");
@@ -94,10 +99,13 @@ public class Main {
 
 
 								u = new Usuario(nif,passwd);
+								
 								mibase.abrir();
+								//Abrimos BBDD
 								codigo=BBDDUsuario.buscarUsuario(u, mibase.getConexion());
+								//Buscamos Socio
 								mibase.cerrar();
-
+								//Cerramos BBDD
 								if (codigo==null)
 									System.out.println("Por motivos técnicos no podemos obtener la información");
 								else
@@ -126,13 +134,15 @@ public class Main {
 
 
 								u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase(),"");
-								u.generar_codigo();
+								u.generar_codigo();//Generamos codigo de socio
 								mibase.abrir();
+								//Abrimos BBDD
 								BBDDUsuario.crear(u, mibase.getConexion());
+								//Creamos Socio
 								System.out.println(nombre+" ,has sido registrado exitosamente");
 								registroS=true;
 								mibase.cerrar();
-
+								//Cerramos BBDD
 
 
 								break;
@@ -141,6 +151,7 @@ public class Main {
 						break;
 					case 2:  
 						do{
+							//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL MENU DE USUARIO
 
 							registroU=false;
 							System.out.println("Zona Usuario\n");
@@ -184,10 +195,13 @@ public class Main {
 								nif=sc.nextLine();
 
 								u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase()," ");
+								//Abrimos BBDD
 								mibase.abrir();
 								BBDDUsuario.crear(u, mibase.getConexion());
+								//Creamos usuario
 								System.out.println(nombre+" ,has sido registrado exitosamente como usuario");
 								mibase.cerrar();
+								//cerramos BBDD
 								registroU=true;
 
 
@@ -203,6 +217,8 @@ public class Main {
 				break;
 			case 2:
 				do{
+					//ESTE BUCLE SERA UTILIZADO COMO VUELTA A LA SELECCION DEL TIPO DE EMPLEADO
+
 					opcionEmple=0;
 					opcionInicial=0;
 					opcion=0;
@@ -231,11 +247,13 @@ public class Main {
 
 
 							e = new Empleados(codS);
-
+							
+							//abrimos BBDD
 							mibase.abrir();
 							codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
+							//Buscamos empleado en la BBDD
 							mibase.cerrar();
-
+							//Cerramos BBDD
 							if (codigoE==null)
 								System.out.println("Por motivos técnicos no podemos obtener la información");
 							else
@@ -267,10 +285,12 @@ public class Main {
 
 
 							e = new Empleados(codS);
-
+							//abrimos base de datos
 							mibase.abrir();
 							codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
+							//Buscamos empleado en la BBDD
 							mibase.cerrar();
+							//cerramos base de datos
 
 							if (codigoE==null)
 								System.out.println("Por motivos técnicos no podemos obtener la información");
@@ -302,23 +322,26 @@ public class Main {
 
 
 							e = new Empleados(codS);
-
+							//abrimos base de datos
 							mibase.abrir();
 							codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
+							//Buscamos empleado en la BBDD
 							mibase.cerrar();
-
+							//cerramos base de datos
 							if (codigoE==null){
 								System.out.println("Por motivos técnicos no podemos obtener la información");
 							}else
 								if (codigoE.equals("ENCARGADO")){
 									do{
+										//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL MENU DEL ENCARGADO
+
 										accionRealizada=false;
 										System.out.println("Bienvenido Señor Encargado");
 										System.out.println("\n1.Dar de alta empleado \n2.Dar de baja empleado\n3.Salir");
 										opcionEmple=sc.nextInt();
 										switch (opcionEmple) {
 										case 1:
-											
+
 											sc.nextLine();
 											System.out.println("Introduce Nombre");
 											String nombreE=sc.nextLine();
@@ -344,11 +367,14 @@ public class Main {
 
 
 											e = new Empleados ("",nif,nombreE, apellidoE,direccion,telefono,Contrato, antiguedad,sueldo,cargo,NumSS);
-											e.generar_codigo();
+											e.generar_codigo(); //metodo utilizado para generar un codigo aleatorio
+											//abrimos base de datos
 											mibase.abrir();
 											BBDDEmpleados.crear(e, mibase.getConexion());
+											//creamos empleado en la BBDD
 											System.out.println(nombreE+" ,ha sido usted contratado");
 											mibase.cerrar();
+											//cerramos base de datos
 											accionRealizada=true;
 
 											break;
@@ -359,15 +385,20 @@ public class Main {
 
 
 											e = new Empleados (despido);
+											//abrimos base de datos
 											mibase.abrir();
 											BBDDEmpleados.borrar(e, mibase.getConexion());
+											//borramos empleado de BBDD
 											System.out.println("El empleado cuyo codigo es " +despido+ " a sido dado de baja");
 											mibase.cerrar();
+											//cerramos base de datos
 											accionRealizada=true;
 											break;
 
 										}
+
 									}while(accionRealizada==true);
+
 								}
 
 

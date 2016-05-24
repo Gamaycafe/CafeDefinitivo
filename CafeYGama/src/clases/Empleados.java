@@ -1,6 +1,9 @@
 package clases;
 
-//@autor Jaime_Grisolía
+/**
+ * @author: Jaime_Grisolia
+ * @version: 24/05/2016
+ */
 
 public class Empleados {
 	private String Codigo_Empleado;
@@ -15,6 +18,12 @@ public class Empleados {
 	private String Cargo;
 	private String Numero_SS;
 
+	/**
+     * Constructor cuya finalidad es dar de alta un nuevo empleado
+     * @param codigo_Empleado,dNI,nombre,apellido,direccion,telefono,tipo_de_Contacto,antigüedad,sueldo,cargo,numero_SS 
+     * estos datos seran usados para la creacion de un nuevo empleado, menos el codigo_Empleado que sera adjudicado automaticamente por el metodo generar_codigo
+     */
+	
 	public Empleados(String codigo_Empleado, String dNI, String nombre, 
 			String apellido, String direccion, String telefono, 
 			String tipo_de_Contacto, int antigüedad, int sueldo, 
@@ -33,6 +42,10 @@ public class Empleados {
 		Numero_SS = numero_SS;
 	}
 
+	/**
+     * Constructor cuya finalidad es dar de baja un empleado
+     * @param codigo_Empleado codigo_Empleado sera usado gracias ,ya que es un codigo unico y personal, para diferenciar los empleados y asi poder darles de baja
+     */
 	public Empleados(String codigo_Empleado) {
 
 		Codigo_Empleado = codigo_Empleado;
@@ -125,6 +138,10 @@ public class Empleados {
 				+ Sueldo + ", Cargo: " + Cargo + ", Numero_SS: " + Numero_SS;
 	}
 
+
+	/**
+     * Método que genera un codigo aleatorio para los empleados, y sera usado como metodo de identificacion poe ejemplo a la hora de dar de baja un empleado
+     */
 	public void generar_codigo(){
 		String codigo="";
 		//Declaro las variables del rango numérico que corresponde al alfabeto en Ascii

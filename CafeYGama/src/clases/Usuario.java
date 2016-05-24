@@ -1,6 +1,10 @@
 package clases;
 
-//@autor Jaime_Grisolía
+/**
+ * @author: Jaime_Grisolia
+ * @version: 24/05/2016
+ */
+
 
 public class Usuario {
 	private String Codigo_Socio;
@@ -8,23 +12,29 @@ public class Usuario {
 	private String Nombre;
 	private String Contraseña;
 	
-	
+	/**
+     * Constructor para la busqueda de un cliente en la BBDD
+     * @param dni, contraseña DNI y CONTRASEÑA seran usados para buscar un cliente con esos datos
+     */
 	public Usuario(String dni, String contraseña) {
 		
 		Codigo_Socio = null;
 		DNI = dni;
 		Nombre = null;
 		Contraseña = contraseña;
-	}
+	} //Cierre del constructor
 	
-	
+	/**
+     * Constructor para la creacion de un nuevo usuario
+     * @param nombre, contraseña, dni, codigoS Estos datos, excepto codigoS seran metidos por teclado y utilizados para crear un nuevo USUARIO o SOCIO, dependiendo lo que elija el cliente
+     */
 	public Usuario (String nombre, String contraseña,String dni, String codigoS) {
 		
 		Codigo_Socio = codigoS;
 		DNI = dni;
 		Nombre = nombre;
 		Contraseña = contraseña;
-	}
+	} //Cierre del constructor
 
 	public String getCodigo_Socio() {
 		return Codigo_Socio;
@@ -61,6 +71,10 @@ public class Usuario {
 				+ Nombre + ", Contraseña: " + Contraseña;
 	}
 	
+	
+	/**
+     * Método que genera un codigo aleatorio para los clientes que sera usado posteriormente para distingir un usuario de un socio
+     */
 	public void generar_codigo(){
 		  String codigo="";
 		  //Declaro las variables del rango numérico que corresponde al alfabeto en Ascii

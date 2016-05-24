@@ -1,6 +1,6 @@
 package bbdd;
 
-//@autor Jaime_Grisolía
+//@author Jaime_Grisolía
 
 import java.sql.Connection;
 import java.sql.ResultSet;
