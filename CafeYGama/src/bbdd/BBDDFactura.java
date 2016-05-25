@@ -7,6 +7,11 @@ import java.sql.Statement;
 
 import clases.Factura;
 
+/**
+ * @author Miguel Arada Benavides
+ * 
+**/
+
 public class BBDDFactura {
 	private static Statement s;
 	private static Connection c;
@@ -27,11 +32,7 @@ public class BBDDFactura {
 			System.out.println(e.getMessage());
 		}
 	}
-	public boolean pagada (Factura factura, Connection c){
-		boolean certificar = false;
-		
-		return certificar;
-	}
+	
 	public static void descuento (Factura factura, Connection c){
 		
 	}

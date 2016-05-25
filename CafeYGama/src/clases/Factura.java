@@ -1,20 +1,26 @@
 package clases;
 
+import clases.*;
+
+/**
+ * @author Miguel Arada Benavides
+ * 
+**/
+
 public class Factura {
 	private int Numero_Factura;
 	private Empleados Codigo_Empleado;
 	private Conexion Numero_Conexion;
-	private String Importe;
+	private double Importe;
 	private String Fecha;
 	private int Descuento;
 	
-	public Factura(int numero_Factura, Empleados codigo_Empleado, 
-			Conexion numero_Conexion, String importe, String fecha, int descuento) {
+	public Factura(Empleados codigo_Empleado, 
+			Conexion numero_Conexion, String fecha, int descuento) {
 		
-		Numero_Factura = numero_Factura;
+		Numero_Factura++;	
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
-		Importe = importe;
 		Fecha = fecha;
 		Descuento = descuento;
 	}
@@ -40,10 +46,10 @@ public class Factura {
 		Numero_Conexion = numero_Conexion;
 	}
 
-	public String getImporte() {
+	public double getImporte() {
 		return Importe;
 	}
-	public void setImporte(String importe) {
+	public void setImporte(Double importe) {
 		Importe = importe;
 	}
 
@@ -69,4 +75,8 @@ public class Factura {
 				+ Descuento;
 	}
 	
+	public double realizar_importe() {
+		
+		return 0;
+	}
 }
