@@ -12,6 +12,10 @@ public class Ordenador {
 		Codigo = null;
 	}
 
+	public Ordenador(String codigo){
+		Codigo=codigo;
+	}
+	
 	public String getCodigo() {
 		return Codigo;
 	}

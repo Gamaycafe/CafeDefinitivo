@@ -76,7 +76,8 @@ public class Factura {
 	}
 	
 	public double realizar_importe() {
+		double importe = 0;
 		
-		return 0;
+		return importe;
 	}
 }
