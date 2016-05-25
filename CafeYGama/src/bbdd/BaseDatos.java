@@ -35,14 +35,12 @@ public class BaseDatos {
 	public void abrir(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Base de datos Encontrada");
 		}
 		catch (ClassNotFoundException e){
 			System.out.println(e.getMessage());
 		}
 		try{
 		 	c=DriverManager.getConnection(url,usuario,pass);
-			System.out.println("Base de datos Conectada");
 		}
 		catch (SQLException e ){
 			System.out.println(e.getMessage());

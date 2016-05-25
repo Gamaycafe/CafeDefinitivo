@@ -1,5 +1,10 @@
 package bbdd;
 
+/**
+ * @author: Jaime_Grisolia
+ * @version: 24/05/2016
+ */
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +17,9 @@ public class BBDDUsuario {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	/**
+     * Método que sera utilizado para la creacion de un nuevo usuario o socio, dependiendo de si tiene o no Codigo_Socio
+     */
 	public static void crear(Usuario usuario, Connection c){
 		String cadena="INSERT INTO Usuarios VALUES('"+ usuario.getNombre() + "','"  + usuario.getContraseña() 
 				+ "','" + usuario.getDNI() + "','" 
@@ -27,6 +35,11 @@ public class BBDDUsuario {
 		}
 	}
 
+	/**
+     * Método que sera utilizado como su nombre indica, de buscar un usuario o socio en nuestra BBDD.
+     ** @return El codigo de socio del cliente que introduzcamos, siendo " " si el cliente intoducido es usuario, pero no socio,
+     * o siendo un codigo de socio del estilo (letra letra letra numero) si es socio.
+     */
 	public static String buscarUsuario(Usuario u, Connection c){
 		
 		String cadena="SELECT Codigo_Socio FROM Usuarios WHERE DNI='" +u.getDNI() +"' AND Contraseña='" + u.getContraseña() +"'";
@@ -46,4 +59,6 @@ public class BBDDUsuario {
 			
 		}
 }
+	
+
 }
