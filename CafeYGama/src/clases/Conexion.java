@@ -1,5 +1,10 @@
 package clases;
 
+import java.time.Duration;
+import java.time.LocalTime;
+
+import bbdd.*;
+
 public class Conexion {
 	private int Numero_Conexion;
 	private Usuario Codigo_Socio;
@@ -58,4 +63,11 @@ public class Conexion {
 				+ Codigo_Socio + ", Codigo_Ordenador: "+ Codigo_Ordenador 
 				+ ", Hora_Inicio: " + Hora_Inicio + ", Hora_Final: " + Hora_Final;
 	}
+	
+	public static long tiempo(LocalTime Hora_Inicio, LocalTime Hora_Final) {
+		Duration tiempo=Duration.between(Hora_Final,Hora_Inicio);
+		long horas=tiempo.toHours();
+		return horas;
+	}
+	
 }

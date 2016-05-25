@@ -57,9 +57,4 @@ public class BBDDConexion {
 			}
 	}
 	
-	public static long tiempo(LocalTime Hora_Inicio, LocalTime Hora_Final) {
-			Duration tiempo=Duration.between(Hora_Final,Hora_Inicio);
-			long horas=tiempo.toHours();
-			return horas;
-	}
 }
