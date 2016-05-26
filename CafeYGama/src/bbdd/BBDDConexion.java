@@ -31,8 +31,8 @@ public class BBDDConexion {
 	}
 	
 	public static void iniciar(Conexion conexion, Ordenador ordenador, Connection c){
-		String cadena="UPDATE conexion SET'" + conexion.getHora_Inicio() + "':='" + LocalTime.now() +
-				"'WHERE'" + conexion.getCodigo_Ordenador() + "':='" + ordenador.getCodigo() + "'";
+		String cadena="UPDATE conexion SET Hora_Inicio'" + "':='" + LocalTime.now() +
+				"'WHERE Codigo_Ordenador'" + "':='" + ordenador.getCodigo() + "'";
 		
 		try{
 			s=c.createStatement();
@@ -45,8 +45,8 @@ public class BBDDConexion {
 	}
 	
 	public static void finalizar(Conexion conexion, Ordenador ordenador,Connection c){
-		String cadena="UPDATE conexion SET'" + conexion.getHora_Final() + "':='" + LocalTime.now() +
-				"'WHERE'" + conexion.getCodigo_Ordenador() + "':='" + ordenador.getCodigo() + "'";
+		String cadena="UPDATE conexion SET Hora_Final'" + "':='" + LocalTime.now() +
+				"'WHERE Codigo_Ordenador'" + "':='" + ordenador.getCodigo() + "'";
 		
 		try{
 			s=c.createStatement();
