@@ -30,7 +30,7 @@ public class BBDDConexion {
 		}
 	}
 	
-	public static void iniciar(Conexion conexion, Ordenador ordenador,Connection c){
+	public static void iniciar(Conexion conexion, Ordenador ordenador, Connection c){
 		String cadena="UPDATE conexion SET'" + conexion.getHora_Inicio() + "':='" + LocalTime.now() +
 				"'WHERE'" + conexion.getCodigo_Ordenador() + "':='" + ordenador.getCodigo() + "'";
 		

@@ -12,6 +12,14 @@ public class Conexion {
 	private String Hora_Inicio;
 	private String Hora_Final;
 	
+	public Conexion(int num_conex, String hora_ini){
+		Numero_Conexion = num_conex;
+		Codigo_Socio = null;
+		Codigo_Ordenador = null;
+		Hora_Inicio = hora_ini;
+		Hora_Final = null;
+	}
+	
 	public Conexion(int numero_Conexion, Usuario codigo_Socio, 
 			Ordenador codigo_Ordenador, String hora_Inicio, String hora_Final) {
 		
