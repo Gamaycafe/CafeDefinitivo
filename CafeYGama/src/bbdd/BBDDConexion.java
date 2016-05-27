@@ -8,17 +8,19 @@ import java.time.*;
 
 import clases.Conexion;
 import clases.Ordenador;
+import clases.Usuario;
 
 public class BBDDConexion {
 	private static Statement s;
 	private static Connection c;
 	private static ResultSet reg;
+
 	
 	
 	public static void crear(Conexion conexion, Connection c){
-		int cont=0;
-		cont ++;
-		String cadena="INSERT INTO ordenador VALUES('" + cont + "','" + conexion.getCodigo_Ordenador() + "','" + conexion.getCodigo_Socio() 
+	
+	
+		String cadena="INSERT INTO conexion VALUES('" + conexion.getCodigo_Ordenador() + "','" + conexion.getCodigo_Socio() 
 				+ "','" + conexion.getHora_Inicio() + "','" + conexion.getHora_Final() +"')"; 	
 
 		try{
@@ -31,9 +33,12 @@ public class BBDDConexion {
 		}
 	}
 	
-	public static void iniciar(Conexion conexion, Ordenador ordenador, Connection c){
-		String cadena="UPDATE conexion SET Hora_Inicio'" + "':='" + LocalTime.now() +
-				"'WHERE Codigo_Ordenador'" + "':='" + ordenador.getCodigo() + "'";
+	public static void iniciar(Conexion conexion, Usuario usuario, Ordenador ordenador, Connection c){
+		String cadena="INSERT INTO conexion VALUES( null,'" + ordenador.getCodigo() + "','"  + LocalTime.now() + "', null'" + usuario.getDNI() 
+		+ "')";
+		
+		//Igualar hora final a null, que sea insert, y ..
+		
 		
 		try{
 			s=c.createStatement();
