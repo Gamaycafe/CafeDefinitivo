@@ -64,4 +64,50 @@ public class BBDDConexion {
 			}
 	}
 	
+	public static int getNumeroConexion(Connection c){
+		String cadena="SELECT MAX(Numero_Conexion) FROM conexion";
+		
+		try{
+			s=c.createStatement();
+			reg=s.executeQuery(cadena);
+			if (reg.next()){
+				return reg.getInt(1);
+			}
+			s.close();
+			return 0;
+			}
+			catch ( SQLException e){
+				System.out.println(e.getMessage());
+				return -1;
+			}
+	}
+	
 }
+
+
+/*									if (codigo.equals(" ")){
+										Ordenador ordenador = new Ordenador();
+										ordenador.generar_codigo();
+										int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
+										Conexion conexion = new Conexion(Numero_Conexion, LocalTime.now().toString());
+										
+										
+										
+										do{
+											mibase.abrir();
+											BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+											mibase.cerrar();
+									
+										System.out.println("Bienvenido a zona usuario");
+										System.out.println("////¿Qué desea hacer?\\\\");
+										System.out.println("1........ Realizar pedido");
+										System.out.println("2.......... Cerrar Sesión");
+										switch (opcMenu) {
+											case 1:
+												
+											break;
+										}
+										}while(opcMenu!=2);
+										
+									}
+*/

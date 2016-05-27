@@ -12,6 +12,9 @@ public class Conexion {
 	private String Hora_Inicio;
 	private String Hora_Final;
 	
+
+	
+	
 	public Conexion(int num_conex, String hora_ini){
 		Numero_Conexion = num_conex;
 		Codigo_Socio = null;
