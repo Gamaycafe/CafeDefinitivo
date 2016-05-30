@@ -25,6 +25,17 @@ public class Usuario {
 	} //Cierre del constructor
 	
 	/**
+     * Constructor para la eliminacion de un cliente en la BBDD
+     * @param dni dni sera usado para eliminar un cliente con esos datos
+     */
+	public Usuario(String dni) {
+		
+		Codigo_Socio = null;
+		DNI = dni;
+		Nombre = null;
+		Contraseña = null;
+	} //Cierre del constructor
+	/**
      * Constructor para la creacion de un nuevo usuario
      * @param nombre, contraseña, dni, codigoS Estos datos, excepto codigoS seran metidos por teclado y utilizados para crear un nuevo USUARIO o SOCIO, dependiendo lo que elija el cliente
      */
@@ -80,7 +91,7 @@ public class Usuario {
 		  //Declaro las variables del rango numérico que corresponde al alfabeto en Ascii
 		  //Letras mayúsculas tenemos que usar el rango 65-90
 		  int num1 = 65;
-		  int num2 = 95;
+		  int num2 = 90;
 		  char c = 0;
 		  // Realizamos el proceso 3 veces, generando una letra alatoria y la concatenamos a la cadena total llamada codigo_Ordeandor
 		  for (int i=1; i<=3; i++){
