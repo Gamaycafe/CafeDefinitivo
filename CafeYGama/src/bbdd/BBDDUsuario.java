@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import clases.Empleados;
 import clases.Usuario;
 
 public class BBDDUsuario {
@@ -59,6 +60,17 @@ public class BBDDUsuario {
 			
 		}
 }
-	
+	public static void borrar(Usuario u, Connection c){
+		String cadena="DELETE FROM Usuarios WHERE DNI='" + u.getDNI()+"'";	
+		
+		try{
+		s=c.createStatement();
+		s.executeUpdate(cadena);
+		s.close();
+		}
+		catch ( SQLException e3){
+			System.out.println(e3.getMessage());
+		}
+	}
 
 }
