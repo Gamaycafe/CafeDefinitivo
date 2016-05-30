@@ -39,9 +39,9 @@ public class Usuario {
      * Constructor para la creacion de un nuevo usuario
      * @param nombre, contraseña, dni, codigoS Estos datos, excepto codigoS seran metidos por teclado y utilizados para crear un nuevo USUARIO o SOCIO, dependiendo lo que elija el cliente
      */
-	public Usuario (String nombre, String contraseña,String dni, String codigoS) {
+	public Usuario (String nombre, String contraseña,String dni, String codigos) {
 		
-		Codigo_Socio = codigoS;
+		Codigo_Socio = codigos;
 		DNI = dni;
 		Nombre = nombre;
 		Contraseña = contraseña;

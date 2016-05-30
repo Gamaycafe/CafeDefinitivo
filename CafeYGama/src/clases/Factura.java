@@ -17,8 +17,7 @@ public class Factura {
 	
 	public Factura(Empleados codigo_Empleado, 
 			Conexion numero_Conexion, String fecha) {
-		
-		Numero_Factura++;	
+			
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
 		Fecha = fecha;
