@@ -3,7 +3,7 @@ package clases;
 import java.time.Duration;
 import java.time.LocalTime;
 
-import bbdd.*;
+//import bbdd.*;
 
 public class Conexion {
 	private int Numero_Conexion;

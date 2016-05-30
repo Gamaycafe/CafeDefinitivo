@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import clases.Empleados;
+//import clases.Empleados;
 import clases.Usuario;
 
 public class BBDDUsuario {
@@ -18,6 +18,16 @@ public class BBDDUsuario {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	
+	
+	public static Connection getC() {
+		return c;
+	}
+
+	public static void setC(Connection c) {
+		BBDDUsuario.c = c;
+	}
+
 	/**
      * Método que sera utilizado para la creacion de un nuevo usuario o socio, dependiendo de si tiene o no Codigo_Socio
      */

@@ -57,8 +57,8 @@ public class Usuario {
 	public String getDNI() {
 		return DNI;
 	}
-	public void setDNI(String DNI) {
-		DNI = DNI;
+	public void setDNI(String dni) {
+		DNI = dni;
 	}
 
 	public String getNombre() {

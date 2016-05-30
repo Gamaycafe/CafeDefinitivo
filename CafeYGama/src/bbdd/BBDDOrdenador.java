@@ -17,6 +17,28 @@ public class BBDDOrdenador {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	
+	
+	public static Connection getC() {
+		return c;
+	}
+
+
+	public static void setC(Connection c) {
+		BBDDOrdenador.c = c;
+	}
+
+
+	public static ResultSet getReg() {
+		return reg;
+	}
+
+
+	public static void setReg(ResultSet reg) {
+		BBDDOrdenador.reg = reg;
+	}
+
+
 	/**
 	 * 
 	 * @param ordenador

@@ -14,6 +14,22 @@ public class BBDDEmpleados {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	
+	
+	public static Connection getC() {
+		return c;
+	}
+
+
+
+
+	public static void setC(Connection c) {
+		BBDDEmpleados.c = c;
+	}
+
+
+
+
 	public static void crear(Empleados empleado, Connection c){
 		String cadena="INSERT INTO Empleados VALUES('" + empleado.getCodigo_Empleado() 
 				+ "','" + empleado.getDNI() + "','" + empleado.getNombre() + "','" 

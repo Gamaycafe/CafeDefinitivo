@@ -17,6 +17,14 @@ public class BBDDConexion {
 
 	
 	
+	public static Connection getC() {
+		return c;
+	}
+
+	public static void setC(Connection c) {
+		BBDDConexion.c = c;
+	}
+
 	public static void crear(Conexion conexion, Connection c){
 	
 	

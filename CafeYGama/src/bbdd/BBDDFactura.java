@@ -17,6 +17,32 @@ public class BBDDFactura {
 	private static Connection c;
 	private static ResultSet reg;
 	
+	
+	
+	public static Connection getC() {
+		return c;
+	}
+
+
+
+	public static void setC(Connection c) {
+		BBDDFactura.c = c;
+	}
+
+
+
+	public static ResultSet getReg() {
+		return reg;
+	}
+
+
+
+	public static void setReg(ResultSet reg) {
+		BBDDFactura.reg = reg;
+	}
+
+
+
 	public static void crear (Factura factura, Connection c){
 		String cadena="INSERT INTO ordenador VALUES('" + factura.getNumero_Factura() 
 				+ "','" + factura.getCodigo_Empleado()+ "','" + factura.getNumero_Conexion() 
