@@ -34,7 +34,7 @@ public class Ordenador {
 		//Declaro las variables del rango numérico que corresponde al alfabeto en Ascii
 		//Letras mayúsculas tenemos que usar el rango 65-90
 		int num1 = 65;
-		int num2 = 95;
+		int num2 = 90;
 		char c = 0;
 		// Realizamos el proceso 3 veces, generando una letra alatoria y la concatenamos a la cadena total llamada codigo_Ordeandor
 		for (int i=1; i<=3; i++){

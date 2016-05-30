@@ -33,7 +33,4 @@ public class BBDDFactura {
 		}
 	}
 	
-	public static void descuento (Factura factura, Connection c){
-		
-	}
 }

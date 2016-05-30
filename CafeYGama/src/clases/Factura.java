@@ -11,18 +11,18 @@ public class Factura {
 	private int Numero_Factura;
 	private Empleados Codigo_Empleado;
 	private Conexion Numero_Conexion;
-	private double Importe;
+	private static double Importe = 0;
 	private String Fecha;
 	private int Descuento;
 	
 	public Factura(Empleados codigo_Empleado, 
-			Conexion numero_Conexion, String fecha, int descuento) {
+			Conexion numero_Conexion, String fecha) {
 		
 		Numero_Factura++;	
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
 		Fecha = fecha;
-		Descuento = descuento;
+		Descuento = 15;
 	}
 
 	public int getNumero_Factura() {
@@ -76,8 +76,20 @@ public class Factura {
 	}
 	
 	public double realizar_importe() {
-		double importe = 0;
 		
-		return importe;
+		//Importe = Numero_Conexion.tiempo(Numero_Conexion.getHora_Inicio(), Numero_Conexion.getHora_Final());
+		
+		return Importe;
+	}
+	
+	public void pedidos(Productos producto){
+		Importe += producto.getPrecio()*producto.getCantidad();
+	}
+	
+	public void descuento() { // Realizar descuneto si el usuario es de tipo socio
+		if (Numero_Conexion.getCodigo_Socio().getCodigo_Socio()!=null){
+			Importe = Importe - (Importe*Descuento/100);
+			
+		}
 	}
 }
