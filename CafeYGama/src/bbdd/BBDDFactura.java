@@ -44,7 +44,7 @@ public class BBDDFactura {
 
 
 	public static void crear (Factura factura, Connection c){
-		String cadena="INSERT INTO ordenador VALUES('" + factura.getNumero_Factura() 
+		String cadena="INSERT INTO factura VALUES('" + factura.getNumero_Factura() 
 				+ "','" + factura.getCodigo_Empleado()+ "','" + factura.getNumero_Conexion() 
 				+ "','" + factura.getImporte() + "','" + factura.getFecha() + "','"
 				+ factura.getDescuento() +"')"; 	

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import clases.Ordenador;
+import clases.Usuario;
 
 /**
  * @author Miguel Arada Benavides
@@ -17,25 +18,12 @@ public class BBDDOrdenador {
 	private static Connection c;
 	private static ResultSet reg;
 	
-	
-	
 	public static Connection getC() {
 		return c;
 	}
 
-
 	public static void setC(Connection c) {
 		BBDDOrdenador.c = c;
-	}
-
-
-	public static ResultSet getReg() {
-		return reg;
-	}
-
-
-	public static void setReg(ResultSet reg) {
-		BBDDOrdenador.reg = reg;
 	}
 
 
@@ -45,7 +33,7 @@ public class BBDDOrdenador {
 	 * @param c
 	 */
 	public static void alta(Ordenador ordenador, Connection c){
-		String cadena="INSERT INTO ordenador VALUES('" + ordenador.getCodigo() +"')"; 	
+		String cadena="INSERT INTO ordenadores VALUES('" + ordenador.getCodigo() +"')"; 	
 
 		try{
 			s=c.createStatement();
@@ -57,6 +45,24 @@ public class BBDDOrdenador {
 		}
 	}
 	
+	public static String buscarOrdenador(Ordenador ordenador, Connection c){
+		
+		String cadena="SELECT Codigo_Ordenador FROM ordenadores WHERE Codigo_Ordenador='" +ordenador.getCodigo() +"'";
+		try{
+			s=c.createStatement();
+			reg=s.executeQuery(cadena);
+			if ( reg.next()){
+				String t=reg.getString(1);
+				s.close();
+				return t;
+			}
+			s.close();
+			return "";
+		}
+		catch ( SQLException e){
+			return null;
+		}
+	}
 	
 	public static void baja(Ordenador ordenador, Connection c){
 		String cadena="DELETE FROM ORDENADOR WHERE  Codigo_Ordeandor='" + ordenador.getCodigo() +"'";	
