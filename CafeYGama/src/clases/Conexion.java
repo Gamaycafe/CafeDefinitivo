@@ -7,16 +7,16 @@ import java.time.LocalTime;
 
 public class Conexion {
 	private int Numero_Conexion;
-	private Usuario Codigo_Socio;
+	private Usuario usuario;
 	private Ordenador Codigo_Ordenador;
 	private String Hora_Inicio;
 	private String Hora_Final;
 	
 	
-	public Conexion(Usuario codigo_Socio, 
+	public Conexion(Usuario Usuario, 
 			Ordenador codigo_Ordenador) {
 		
-		Codigo_Socio = codigo_Socio;
+		usuario = Usuario;
 		Codigo_Ordenador = codigo_Ordenador;
 	}
 	
@@ -27,11 +27,11 @@ public class Conexion {
 		Numero_Conexion = numero_Conexion;
 	}
 	
-	public Usuario getCodigo_Socio() {
-		return Codigo_Socio;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setCodigo_Socio(Usuario codigo_Socio) {
-		Codigo_Socio = codigo_Socio;
+	public void setUsuario(Usuario Usuario) {
+		usuario = Usuario;
 	}
 	
 	public Ordenador getCodigo_Ordenador() {
@@ -57,8 +57,8 @@ public class Conexion {
 	
 	@Override
 	public String toString() {
-		return "Numero_Conexion: " + Numero_Conexion + ", Codigo_Socio: " 
-				+ Codigo_Socio + ", Codigo_Ordenador: "+ Codigo_Ordenador 
+		return "Numero_Conexion: " + Numero_Conexion + ", Usuario: " 
+				+ usuario + ", Codigo_Ordenador: "+ Codigo_Ordenador 
 				+ ", Hora_Inicio: " + Hora_Inicio + ", Hora_Final: " + Hora_Final;
 	}
 	

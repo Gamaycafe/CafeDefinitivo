@@ -27,17 +27,32 @@ public class BBDDProductos {
 		}
 	}
 	
-	public static void realizarPedido(Productos p, Connection c){
-		String cadena="UPDATE productos SET cantidad'"+":='" + (p.getCantidad()) + "'-1'" +
-				"'WHERE Nombre'"+":="+p.getNombre()+"'";
+	public static double realizarPedido(Productos p, Connection c){
+		String cadenaSQL="select Precio,cantidad from productos where Nombre='" + p.getNombre() + "'";
 		
+		
+		double importe=0;
+		int cantidad=0;
 		try{
 			s=c.createStatement();
+			reg=s.executeQuery(cadenaSQL);
+			if (reg.next()){
+				importe=reg.getDouble(1);
+				cantidad=reg.getInt(2);
+				
+				}
+			
+			String cadena="UPDATE productos SET cantidad"+"='" + (cantidad-1) +
+					"'WHERE Nombre"+"='"+p.getNombre()+"'";
+			
 			s.executeUpdate(cadena);
 			s.close();
-			}
+			return importe;
+		}
 		catch ( SQLException e){
 			System.out.println(e.getMessage());
+			return -1;
 		}
+		
 }
 }

@@ -18,6 +18,10 @@ public class Productos {
 		Nombre = nombre;
 		Cantidad = cantidad;
 	}
+	public Productos(String nombre) {
+		
+		Nombre = nombre;
+	}
 
 	public int getCod_Productos() {
 		return Cod_Productos;

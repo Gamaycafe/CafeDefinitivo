@@ -86,7 +86,7 @@ public class Factura {
 	}
 	
 	public void descuento() { // Realizar descuneto si el usuario es de tipo socio
-		if (Numero_Conexion.getCodigo_Socio().getCodigo_Socio()!=null){
+		if (Numero_Conexion.getUsuario().getCodigo_Socio()!=null){
 			Importe = Importe - (Importe*Descuento/100);
 			
 		}

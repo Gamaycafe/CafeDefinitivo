@@ -13,6 +13,7 @@ import clases.Factura;
 **/
 
 public class BBDDFactura {
+	
 	private static Statement s;
 	private static Connection c;
 	private static ResultSet reg;

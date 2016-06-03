@@ -8,6 +8,7 @@ package main;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.Scanner;
 import bbdd.*;
 import clases.*;
@@ -26,12 +27,15 @@ public class Main {
 		Usuario u;
 		Usuario usu;
 		Empleados e;
+		Productos producto = null;
+		int elegirPedido=0;
 		int opcionEmple=0;
 		int opcionInicial=0;
 		int opcion=0;
 		int opcionE=0;
 		int opcionUsuario=0;
 		int opcionSocio=0;
+		int opcMenu=0;
 		boolean registroS=false;
 		boolean registroU=false;
 		boolean accionRealizada=false;
@@ -43,7 +47,8 @@ public class Main {
 		do{
 			//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL PRINCIPIO DEL PROGRAMA
 			do{
-
+				opcMenu=0;
+				double importe=0;
 				opcionEmple=0;
 				opcionInicial=0;
 				opcion=0;
@@ -83,16 +88,16 @@ public class Main {
 						switch (opcion) {
 						case 1: 
 							do{
-								
-								//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL MENU DE SOCIOS
 
+								//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL MENU DE SOCIOS
+								opcMenu=0;
 								registroS=false;
 								System.out.println("Zona Socio\n");
 								System.out.println("\n1.Iniciar Sesion\n2.Registro \n3.Volver");
 								opcionSocio=0;
 								opcionSocio=sc.nextInt();
 								//Prueba
-								
+
 								switch (opcionSocio) {
 								case 1:
 									sc.nextLine();
@@ -115,11 +120,106 @@ public class Main {
 									else
 										if (codigo.equals(""))
 											System.out.println("No es Socio");
-										else
+										else{
 											System.out.println("Bienvenido a gama y cafe");
 
+									do{
+										opcMenu=0;//mibase.abrir();
+									//	BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+										//mibase.cerrar();0
+										
+										
 
+										System.out.println("Bienvenido a zona usuario");
+										System.out.println("////¿Qué desea hacer?\\\\");
+										System.out.println("1........ Realizar pedido");
+										System.out.println("2.......... Cerrar Sesión");
+										opcMenu=sc.nextInt();
+										switch (opcMenu) {
+										case 1:
+											 elegirPedido=0;
 
+											System.out.println("Elige tu artículo:");
+											System.out.println("1->Agua ");
+											System.out.println("2->Cafe ");
+											System.out.println("3->Coca-Cola ");
+											System.out.println("4->Cerveza");
+											System.out.println("5->Palmera de chocolate ");
+											System.out.println("6->Croissant ");
+											System.out.println("7->Patatuelas ");
+											System.out.println("8->Volver ");
+											elegirPedido=sc.nextInt();
+											switch(elegirPedido){
+											case 1:
+												 producto =new Productos("AGUA");
+													mibase.abrir();
+													importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+													System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												 break;
+
+											case 2:
+												 producto =new Productos("CAFE");
+													mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+
+											case 3:
+												 producto =new Productos("COCACOLA");
+													mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+											case 4:
+												 producto =new Productos("CERVEZA");
+												 mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+
+											case 5:
+												 producto =new Productos("PALMERA");
+												 mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+
+											case 6:
+												 producto =new Productos("CROISANT ");
+												 mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+												
+											case 7:
+												 producto =new Productos("PATATAS");
+												 mibase.abrir();
+												 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+												 mibase.cerrar();
+												 System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+												break;
+
+											}
+										}
+										
+										}while(elegirPedido==8);
+										
+											
+											break;
+										
+										}
 									break;
 
 								case 2:
@@ -149,7 +249,7 @@ public class Main {
 
 									break;
 								}
-							}while(registroS==true);
+							}while(registroS==true||opcMenu==2);
 							break;
 						case 2:  
 							do{
@@ -179,10 +279,92 @@ public class Main {
 										System.out.println("Por motivos técnicos no podemos obtener la información");
 										opcionUsuario=3;
 									}else
-										if (codigo.equals("U"))
+										if (codigo.equals("U")){
 											System.out.println("Bienvenido a zona usuario");
+											Ordenador ordenador = new Ordenador();
+											ordenador.generar_codigo();
+											int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
+											//Conexion conexion = new Conexion(Numero_Conexion, LocalTime.now().toString());
 
-										else{
+											do{
+												//mibase.abrir();
+											//	BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+												//mibase.cerrar();
+												opcMenu=0;
+
+												System.out.println("Bienvenido a zona usuario");
+												System.out.println("////¿Qué desea hacer?\\\\");
+												System.out.println("1........ Realizar pedido");
+												System.out.println("2.......... Cerrar Sesión");
+												switch (opcMenu) {
+												case 1:
+													System.out.println("Elige tu artículo:");
+													System.out.println("1->Agua ");
+													System.out.println("2->Cafe ");
+													System.out.println("3->Coca-Cola ");
+													System.out.println("4->Cerveza");
+													System.out.println("5->Palmera de chocolate ");
+													System.out.println("6->Croissant ");
+													System.out.println("7->Patatuelas ");
+													System.out.println("8->Volver ");
+													elegirPedido=0;
+
+													switch(elegirPedido){
+													case 1:
+														 producto =new Productos("AGUA");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														 break;
+
+													case 2:
+														 producto =new Productos("CAFE");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+
+													case 3:
+														 producto =new Productos("COCACOLA");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+													case 4:
+														 producto =new Productos("CERVEZA");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+
+													case 5:
+														 producto =new Productos("PALMERA");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+
+													case 6:
+														 producto =new Productos("CROISANT ");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+														
+													case 7:
+														 producto =new Productos("PATATAS");
+														 importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+															System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+
+														break;
+
+													}
+													
+													
+													break;
+												}
+											}while(opcMenu!=2);
+										}else{
 
 											System.out.println("Usted es socio, Va a ser reedirijido al menu principal");
 											opcionUsuario=3;
