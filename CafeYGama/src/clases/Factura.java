@@ -1,5 +1,7 @@
 package clases;
 
+//import org.omg.CORBA.IMP_LIMIT;
+
 //import clases.*;
 
 /**
@@ -11,9 +13,8 @@ public class Factura {
 	private int Numero_Factura;
 	private Empleados Codigo_Empleado;
 	private Conexion Numero_Conexion;
-	private static double Importe = 0;
+	public static double Importe = 0;
 	private String Fecha;
-	private int Descuento;
 	
 	public Factura(Empleados codigo_Empleado, 
 			Conexion numero_Conexion, String fecha) {
@@ -21,7 +22,6 @@ public class Factura {
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
 		Fecha = fecha;
-		Descuento = 15;
 	}
 
 	public int getNumero_Factura() {
@@ -59,25 +59,16 @@ public class Factura {
 		Fecha = fecha;
 	}
 
-	public int getDescuento() {
-		return Descuento;
-	}
-	public void setDescuento(int descuento) {
-		Descuento = descuento;
-	}
-
 	@Override
 	public String toString() {
 		return "Numero_Factura: " + Numero_Factura + ", Codigo_Empleado: " 
 				+ Codigo_Empleado + ", Numero_Conexion: " + Numero_Conexion 
-				+ ", Importe: " + Importe + ", Fecha: " + Fecha + ", Descuento: "
-				+ Descuento;
+				+ ", Importe: " + Importe + ", Fecha: " + Fecha;
 	}
 	
 	public double realizar_importe() {
-		
-		//Importe = Numero_Conexion.tiempo(Numero_Conexion.getHora_Inicio(), Numero_Conexion.getHora_Final());
-		
+		double tiempoConexion = Numero_Conexion.tiempo(Numero_Conexion.getHora_Inicio(), Numero_Conexion.getHora_Final());
+		Importe = Importe + tiempoConexion;
 		return Importe;
 	}
 	
@@ -87,8 +78,7 @@ public class Factura {
 	
 	public void descuento() { // Realizar descuneto si el usuario es de tipo socio
 		if (Numero_Conexion.getUsuario().getCodigo_Socio()!=null){
-			Importe = Importe - (Importe*Descuento/100);
-			
+			Importe = Importe - (Importe*15/100);
 		}
 	}
 }
