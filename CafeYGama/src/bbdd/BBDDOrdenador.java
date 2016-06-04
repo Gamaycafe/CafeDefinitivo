@@ -47,7 +47,7 @@ public class BBDDOrdenador {
 	
 	public static String buscarOrdenador(Ordenador ordenador, Connection c){
 		
-		String cadena="SELECT Codigo_Ordenador FROM ordenadores WHERE Codigo_Ordenador='" +ordenador.getCodigo() +"'";
+		String cadena="SELECT Codigo_Ordenador  FROM ordenadores WHERE Codigo_Ordenador='" +ordenador.getCodigo() +"'";
 		try{
 			s=c.createStatement();
 			reg=s.executeQuery(cadena);
