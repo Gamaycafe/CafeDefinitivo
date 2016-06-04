@@ -38,6 +38,8 @@ public class Main {
 		int opcMenu=0;
 		int masPedido=0;
 		int opcionCiber=0;
+		int opcionCafe=0;
+
 		double precioProducto=0;
 
 		String cod_ordena;
@@ -521,8 +523,8 @@ public class Main {
 														elegirPedido=8;
 														break;
 													}
-													
-													f.setImporte(f.getImporte()+precioProducto);
+
+													//f.setImporte(f.getImporte()+precioProducto);
 													break;
 
 
@@ -587,108 +589,139 @@ public class Main {
 						opcionE=sc.nextInt();
 						switch (opcionE) {
 						case 1: 
-							opcionEmple=0;
-							System.out.println("Zona cafeteria\n");
-							System.out.println("\n1.Iniciando Sesion \n2.Salir");
-							opcionEmple=sc.nextInt();
-							switch (opcionEmple) {
-							case 1:
-								System.out.println("Iniciando Sesion");
-								sc.nextLine();
-								System.out.println("Introduce Codigo empleado");
-								String codS=sc.nextLine();
+							do{
+								opcionEmple=0;
+								opcionCafe=0;
+								System.out.println("Zona cafeteria\n");
+								System.out.println("\n1.Iniciando Sesion \n2.Salir");
+								opcionEmple=sc.nextInt();
+								switch (opcionEmple) {
+								case 1:
 
 
 
-								e = new Empleados(codS);
-
-								//abrimos BBDD
-								mibase.abrir();
-								codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
-								//Buscamos empleado en la BBDD
-								mibase.cerrar();
-								//Cerramos BBDD
-								if (codigoE==null)
-									System.out.println("Por motivos técnicos no podemos obtener la información");
-								else
-									if (codigoE.equals("CAFETERIA")||codigoE.equals("ENCARGADO")){
-										System.out.println("QUE DESEA CONSULTAR?");
-										System.out.println("1-->Gestionar pedidos ");
-										System.out.println("2-->Cerrar sesion ");
-									}else
-										System.out.println("Usted no pertenece a la zona CAFETERIA");
-
-								break;
-
-							case 2:
-								System.out.println("Estas saliendo");
-								break;
-							}
-
-							break;
-						case 2:  
-							opcionEmple=0;
-							System.out.println("Zona cibercafe\n");
-							System.out.println("\n1.Iniciando Sesion \n2.Salir");
-							opcionEmple=sc.nextInt();
-							switch (opcionEmple) {
-							case 1:
-								System.out.println("Iniciando Sesion");
-								sc.nextLine();
-								System.out.println("Introduce Codigo empleado");
-								String codS=sc.nextLine();
+									System.out.println("Iniciando Sesion");
+									sc.nextLine();
+									System.out.println("Introduce Codigo empleado");
+									String codS=sc.nextLine();
 
 
 
-								e = new Empleados(codS);
-								//abrimos base de datos
-								mibase.abrir();
-								codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
-								//Buscamos empleado en la BBDD
-								mibase.cerrar();
-								//cerramos base de datos
+									e = new Empleados(codS);
 
-								if (codigoE==null)
-									System.out.println("Por motivos técnicos no podemos obtener la información");
-								else
-									
-									if (codigoE.equals("CIBER")||codigoE.equals("ENCARGADO")){
-										System.out.println("QUE DESEA CONSULTAR?");
-										System.out.println("1-->Ver ordenadores ");
-										System.out.println("2-->Cobrar usuario ");
-										System.out.println("3-->Cerrar sesion ");
-										opcionCiber=sc.nextInt();
-										switch (opcionCiber) {
-										case 1:
-											mibase.abrir();
-											for (int i = 0; i < BBDDOrdenador.vector(mibase.getConexion()).size(); i++) {
-												System.out.println(BBDDOrdenador.vector(mibase.getConexion()).get(i).toString());
-											}
-											mibase.cerrar();
-											break;
-										case 2:
-
-											break;
-										case 3:
-
-											break;
-
-										default:
-											break;
-										}
-
-									}
+									//abrimos BBDD
+									mibase.abrir();
+									codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
+									//Buscamos empleado en la BBDD
+									mibase.cerrar();
+									//Cerramos BBDD
+									if (codigoE==null)
+										System.out.println("Por motivos técnicos no podemos obtener la información");
 									else
-										System.out.println("Usted no pertenece a la zona CIBER");
+										if (codigoE.equals("CAFETERIA")||codigoE.equals("ENCARGADO")){
+
+											do{
+												opcionCafe=0;
+												System.out.println("QUE DESEA CONSULTAR?");
+												System.out.println("1-->Gestionar pedidos ");
+												System.out.println("2-->Cerrar sesion ");
+												opcionCafe=sc.nextInt();
+												switch (opcionCafe) {
+												case 1:
+
+													break;
+
+
+												}
+											}while(opcionCafe==1);
+
+										}else
+											System.out.println("Usted no pertenece a la zona CAFETERIA");
+
+									break;
+
+								case 2:
+									System.out.println("Estas saliendo");
+									break;
+
+								}
+
+							}while(opcionCafe==2);
 
 								break;
 
+						case 2:  
+							do{
+								opcionEmple=0;
+								opcionCiber=0;
+								System.out.println("Zona cibercafe\n");
+								System.out.println("\n1.Iniciando Sesion \n2.Salir");
+								opcionEmple=sc.nextInt();
+								switch (opcionEmple) {
+								case 1:
+									System.out.println("Iniciando Sesion");
+									sc.nextLine();
+									System.out.println("Introduce Codigo empleado");
+									String codS=sc.nextLine();
 
-							case 2:
-								System.out.println("Estas saliendo");
-								break;
-							}
 
+
+									e = new Empleados(codS);
+									//abrimos base de datos
+									mibase.abrir();
+									codigoE=BBDDEmpleados.buscarEmple(e, mibase.getConexion());
+									//Buscamos empleado en la BBDD
+									mibase.cerrar();
+									//cerramos base de datos
+
+									if (codigoE==null)
+										System.out.println("Por motivos técnicos no podemos obtener la información");
+									else
+
+										if (codigoE.equals("CIBER")||codigoE.equals("ENCARGADO")){
+
+											do{
+												opcionEmple=0;
+												opcionCiber=0;
+												System.out.println("\nQUE DESEA CONSULTAR?");
+												System.out.println("1-->Ver ordenadores ");
+												System.out.println("2-->Cobrar usuario ");
+												System.out.println("3-->Cerrar sesion ");
+												opcionCiber=sc.nextInt();
+												switch (opcionCiber) {
+												case 1:
+													mibase.abrir();
+													for (int i = 0; i < BBDDOrdenador.vector(mibase.getConexion()).size(); i++) {
+														System.out.println(BBDDOrdenador.vector(mibase.getConexion()).get(i).toString());
+													}
+													mibase.cerrar();
+													break;
+												case 2:
+
+													break;
+												case 3:
+
+													break;
+
+												default:
+													break;
+												}
+											}while(opcionCiber!=3);
+
+
+										}
+										else
+											System.out.println("Usted no pertenece a la zona CIBER");
+
+									break;
+
+
+								case 2:
+									System.out.println("Estas saliendo");
+									break;
+								}
+							}while(opcionCiber==3);
+							break;
 						case 3: 
 							opcionEmple=0;
 							System.out.println("Zona Encargado\n");
