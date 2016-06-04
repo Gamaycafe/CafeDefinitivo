@@ -28,7 +28,7 @@ public class BBDDConexion {
 	public static void crear(Conexion conexion, Connection c){
 	
 	
-		String cadena="INSERT INTO conexion VALUES('" + conexion.getCodigo_Ordenador() + "','" + conexion.getCodigo_Socio() 
+		String cadena="INSERT INTO conexion VALUES('" + conexion.getCodigo_Ordenador() + "','" + conexion.getUsuario() 
 				+ "','" + conexion.getHora_Inicio() + "','" + conexion.getHora_Final() +"')"; 	
 
 		try{
