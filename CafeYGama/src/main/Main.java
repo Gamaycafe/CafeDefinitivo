@@ -8,6 +8,7 @@ package main;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
@@ -40,9 +41,9 @@ public class Main {
 		int masPedido=0;
 		int opcionCiber=0;
 		int opcionCafe=0;
-
+		Empleados emple=null;
 		double precioProducto=0;
-
+		LocalDate hoy= LocalDate.now();
 		String cod_ordena;
 		String ordenador_Cod="";
 
@@ -50,7 +51,7 @@ public class Main {
 		boolean registroS=false;
 		boolean registroU=false;
 		boolean accionRealizada=false;
-
+		emple =new Empleados("3ABC");
 		String nif="",passwd="",codigo="",codigoE="";
 		Scanner sc = new Scanner(System.in);
 		BaseDatos mibase=new BaseDatos("cibercafe");
@@ -213,6 +214,7 @@ public class Main {
 
 												Horainicio = LocalTime.now();
 
+												f = new Factura(emple, conexion, hoy.toString());
 
 												System.out.println("Bienvenido a zona socio");
 												System.out.println("////¿Qué desea hacer?\\\\");
@@ -330,15 +332,23 @@ public class Main {
 													break;
 
 												}
+
+												f.pedidos(producto);
+
 											}while(elegirPedido==8);
 
 
 											mibase.abrir();
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
-											
+
 											Horafinal = LocalTime.now();
+											System.out.println("Debe pagar "+f.getImporte()+"€");
 											
+											mibase.abrir();
+											BBDDFactura.crear(f, mibase.getConexion());
+											mibase.cerrar();
+
 										}
 									break;
 
@@ -368,9 +378,9 @@ public class Main {
 
 									break;
 								}
-								
+
 							}while(registroS==true||opcMenu==2);
-							
+
 							break;
 						case 2:  
 							do{
@@ -407,25 +417,17 @@ public class Main {
 											System.out.println("Bienvenido a zona usuario");
 
 
-											mibase.abrir();
-											int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
-											conexion = new Conexion(u, ordenador);
-											mibase.cerrar();
-
 											do{
 												opcMenu=0;
 												elegirPedido=0;
-
-
-												mibase.abrir();
-												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
-												mibase.cerrar();
 
 												mibase.abrir();
 												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
 
 												Horainicio = LocalTime.now();
+												
+												f = new Factura(emple, conexion, hoy.toString());
 
 												System.out.println("////¿Qué desea hacer?\\\\");
 												System.out.println("1........ Realizar pedido");
@@ -459,6 +461,8 @@ public class Main {
 														masPedido=sc.nextInt();
 														if(masPedido==1){
 															elegirPedido=8;}
+														
+														f.Importe=f.Importe+precioProducto;
 														break;
 
 													case 2:
@@ -538,17 +542,22 @@ public class Main {
 														break;
 													}
 
-													//f.setImporte(f.getImporte()+precioProducto);
 													break;
 
 
 												}
+												
+
 											}while(elegirPedido==8);
+
 											mibase.abrir();
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
-											
+
 											Horafinal = LocalTime.now();
+
+											System.out.println("Debe pagar "+f.Importe+"€");
+
 										}else{
 
 											System.out.println("Usted es socio, Va a ser reedirijido al menu principal");

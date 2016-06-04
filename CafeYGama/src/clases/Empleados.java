@@ -41,7 +41,7 @@ public class Empleados {
 		Cargo = cargo;
 		Numero_SS = numero_SS;
 	}
-
+	
 	/**
      * Constructor cuya finalidad es dar de baja un empleado
      * @param codigo_Empleado codigo_Empleado sera usado gracias ,ya que es un codigo unico y personal, para diferenciar los empleados y asi poder darles de baja
