@@ -104,7 +104,7 @@ public class BBDDConexion {
 				
 				
 				//FINALIZAR
-				
+				mibase.abrir();
 				BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 				mibase.cerrar();
 				

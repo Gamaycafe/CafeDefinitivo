@@ -18,7 +18,8 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 
 
-
+		LocalTime Horainicio;
+		LocalTime Horafinal;
 		Usuario u;
 		Usuario usu;
 		Conexion conexion = null;
@@ -206,10 +207,11 @@ public class Main {
 												elegirPedido=0;
 
 
-												//mibase.abrir();
-												//	BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
-												//mibase.cerrar();0
+												mibase.abrir();
+												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+												mibase.cerrar();
 
+												Horainicio = LocalTime.now();
 
 
 												System.out.println("Bienvenido a zona socio");
@@ -331,7 +333,12 @@ public class Main {
 											}while(elegirPedido==8);
 
 
-
+											mibase.abrir();
+											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
+											mibase.cerrar();
+											
+											Horafinal = LocalTime.now();
+											
 										}
 									break;
 
@@ -361,7 +368,9 @@ public class Main {
 
 									break;
 								}
+								
 							}while(registroS==true||opcMenu==2);
+							
 							break;
 						case 2:  
 							do{
@@ -394,6 +403,7 @@ public class Main {
 										opcionUsuario=3;
 									}else
 										if (codigo.equals("U")){
+
 											System.out.println("Bienvenido a zona usuario");
 
 
@@ -411,7 +421,11 @@ public class Main {
 												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
 
+												mibase.abrir();
+												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+												mibase.cerrar();
 
+												Horainicio = LocalTime.now();
 
 												System.out.println("////¿Qué desea hacer?\\\\");
 												System.out.println("1........ Realizar pedido");
@@ -530,6 +544,11 @@ public class Main {
 
 												}
 											}while(elegirPedido==8);
+											mibase.abrir();
+											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
+											mibase.cerrar();
+											
+											Horafinal = LocalTime.now();
 										}else{
 
 											System.out.println("Usted es socio, Va a ser reedirijido al menu principal");
@@ -648,7 +667,7 @@ public class Main {
 
 							}while(opcionCafe==2);
 
-								break;
+							break;
 
 						case 2:  
 							do{
