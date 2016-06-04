@@ -9,8 +9,9 @@ public class Conexion {
 	private int Numero_Conexion;
 	private Usuario usuario;
 	private Ordenador Codigo_Ordenador;
-	private String Hora_Inicio;
-	private String Hora_Final;
+	private LocalTime Hora_Inicio;
+	private LocalTime Hora_Final;
+	private String Dni;
 	
 	
 	public Conexion(Usuario Usuario, 
@@ -18,6 +19,7 @@ public class Conexion {
 		
 		usuario = Usuario;
 		Codigo_Ordenador = codigo_Ordenador;
+		Dni = usuario.getDNI();
 	}
 	
 	public int getNumero_Conexion() {
@@ -41,17 +43,17 @@ public class Conexion {
 		Codigo_Ordenador = codigo_Ordenador;
 	}
 	
-	public String getHora_Inicio() {
+	public LocalTime getHora_Inicio() {
 		return Hora_Inicio;
 	}
-	public void setHora_Inicio(String hora_Inicio) {
+	public void setHora_Inicio(LocalTime hora_Inicio) {
 		Hora_Inicio = hora_Inicio;
 	}
 	
-	public String getHora_Final() {
+	public LocalTime getHora_Final() {
 		return Hora_Final;
 	}
-	public void setHora_Final(String hora_Final) {
+	public void setHora_Final(LocalTime hora_Final) {
 		Hora_Final = hora_Final;
 	}
 	
@@ -62,9 +64,9 @@ public class Conexion {
 				+ ", Hora_Inicio: " + Hora_Inicio + ", Hora_Final: " + Hora_Final;
 	}
 	
-	public static long tiempo(LocalTime Hora_Inicio, LocalTime Hora_Final) {
-		Duration tiempo=Duration.between(Hora_Final,Hora_Inicio);
-		long horas=tiempo.toHours();
+	public static double tiempo(LocalTime Hora_Inicio, LocalTime Hora_Final) {
+		Duration tiempo=Duration.between(Hora_Inicio,Hora_Final);
+		double horas=tiempo.toHours();
 		return horas;
 	}
 	
