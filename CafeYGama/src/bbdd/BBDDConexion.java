@@ -42,10 +42,10 @@ public class BBDDConexion {
 	}
 	
 	public static void iniciar(Conexion conexion, Usuario usuario, Ordenador ordenador, Connection c){
-		String cadena="INSERT INTO conexion VALUES( null,'" + ordenador.getCodigo() + "','"  + LocalTime.now() + "', null'" + usuario.getDNI() 
+		String cadena="INSERT INTO conexion VALUES( null,'" + ordenador.getCodigo() + "','"  + LocalTime.now() + "', 0,'" + usuario.getDNI() 
 		+ "')";
 		
-		//Igualar hora final a null, que sea insert, y ..
+		//Igualar hora final a null, que sea insert, y ...
 		
 		
 		try{
@@ -59,8 +59,8 @@ public class BBDDConexion {
 	}
 	
 	public static void finalizar(Conexion conexion, Ordenador ordenador,Connection c){
-		String cadena="UPDATE conexion SET Hora_Final'" + "':='" + LocalTime.now() +
-				"'WHERE Codigo_Ordenador'" + "':='" + ordenador.getCodigo() + "'";
+		String cadena="UPDATE conexion SET Hora_Final ='" + LocalTime.now() +
+				"'WHERE Codigo_Ordenador ='" + ordenador.getCodigo() + "'";
 		
 		try{
 			s=c.createStatement();
@@ -93,29 +93,24 @@ public class BBDDConexion {
 }
 
 
-/*									if (codigo.equals(" ")){
-										Ordenador ordenador = new Ordenador();
-										ordenador.generar_codigo();
-										int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
-										Conexion conexion = new Conexion(Numero_Conexion, LocalTime.now().toString());
-										
-										
-										
-										do{
-											mibase.abrir();
-											BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
-											mibase.cerrar();
-									
-										System.out.println("Bienvenido a zona usuario");
-										System.out.println("////¿Qué desea hacer?\\\\");
-										System.out.println("1........ Realizar pedido");
-										System.out.println("2.......... Cerrar Sesión");
-										switch (opcMenu) {
-											case 1:
-												
-											break;
-										}
-										}while(opcMenu!=2);
-										
-									}
+/*		
+				//INICIO (acuerdate de inicializar las variables Horainicio y Horafinal).
+				
+				mibase.abrir();
+				BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+				mibase.cerrar();
+				
+				Horainicio = LocalTime.now();
+				
+				
+				//FINALIZAR
+				
+				BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
+				mibase.cerrar();
+				
+				Horafinal = LocalTime.now();
+				
+				mibase.abrir();
+				Conexion.tiempo(Horainicio, Horafinal);
+				mibase.cerrar();
 */
