@@ -59,7 +59,7 @@ public class BBDDOrdenador {
 	
 	
 	public static void baja(Ordenador ordenador, Connection c){
-		String cadena="DELETE FROM ordenadores WHERE  codigo_ordenador='" + ordenador.getCodigo() +"'";	
+		String cadena="DELETE FROM ordenadores WHERE codigo_ordenador='" + ordenador.getCodigo() +"'";	
 		
 		try{
 		s=c.createStatement();

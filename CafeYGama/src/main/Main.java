@@ -22,6 +22,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		Usuario u;
 		Usuario usu;
+		Conexion conexion = null;
 		Empleados e;
 		String DNI="";
 		Ordenador o;
@@ -69,6 +70,8 @@ public class Main {
 
 				opcionInicial=0;
 				opcionInicial=sc.nextInt();
+				
+				Ordenador ordenador = new Ordenador("AAA123");
 
 				switch (opcionInicial) {
 				case 1:
@@ -316,19 +319,21 @@ public class Main {
 									}else
 										if (codigo.equals("U")){
 											System.out.println("Bienvenido a zona usuario");
-											//Ordenador ordenador = new Ordenador();
-											//ordenador.generar_codigo();
-											//int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
-											//Conexion conexion = new Conexion(Numero_Conexion, LocalTime.now().toString());
+											
+											
+											mibase.abrir();
+											int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
+											conexion = new Conexion(u, ordenador);
+											mibase.cerrar();
 
 											do{
 												opcMenu=0;
 												elegirPedido=0;
 											
 
-												//mibase.abrir();
-												//	BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
-												//mibase.cerrar();0
+												mibase.abrir();
+													BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+												mibase.cerrar();
 
 
 
@@ -414,7 +419,7 @@ public class Main {
 														break;
 
 													case 6:
-														producto =new Productos("CROISANT ");
+														producto =new Productos("CROISSANT ");
 														mibase.abrir();
 														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
@@ -445,6 +450,7 @@ public class Main {
 													
 
 													break;
+													
 													
 												}
 											}while(elegirPedido==8);
@@ -480,7 +486,10 @@ public class Main {
 								}
 
 							}while(registroU==true||opcMenu==2);
-
+							
+							mibase.abrir();
+							BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
+							mibase.cerrar();
 						}
 
 					}while(opcionSocio==3||opcionUsuario==3);
