@@ -10,23 +10,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.Scanner;
+
 import bbdd.*;
 import clases.*;
-
 public class Main {
 
-	
-
 	public static void main(String[] args) throws SQLException {
-		String nif="",passwd="",codigo="",codigoE="";
-		Scanner sc = new Scanner(System.in);
+
+
+
 		Usuario u;
 		Usuario usu;
 		Conexion conexion = null;
 		Empleados e;
 		String DNI="";
 		Ordenador o;
+		Ordenador ordenador=null;
 		Productos producto = null;
+		Factura f=null;
 		int elegirPedido=0;
 		int opcionEmple=0;
 		int opcionInicial=0;
@@ -36,21 +37,95 @@ public class Main {
 		int opcionSocio=0;
 		int opcMenu=0;
 		int masPedido=0;
+		int opcionCiber=0;
+		double precioProducto=0;
+
 		String cod_ordena;
+		String ordenador_Cod="";
+
+		boolean existe =false;
 		boolean registroS=false;
 		boolean registroU=false;
 		boolean accionRealizada=false;
 
+		String nif="",passwd="",codigo="",codigoE="";
+		Scanner sc = new Scanner(System.in);
 		BaseDatos mibase=new BaseDatos("cibercafe");
+		//BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
+
+		String codigOr="";
+
+		String[] codigos_Ordenador = new String[20];
+		String[] codigos_Ordenador_Exitentes = new String[3];
+		codigos_Ordenador_Exitentes [0] = "AAA123";
+		codigos_Ordenador_Exitentes [1] = "BBB123";
+		codigos_Ordenador_Exitentes [2] = "CCC123";
+
+		boolean verificar = false;
+		//Ordenador ordenador = new Ordenador();
+
+		/*for (int i = 0; i < 20; i++) { //Generar los 20 ordenadores
+			ordenador.generar_codigo();
+			do{
+				codigos_Ordenador[i]= ordenador.getCodigo();
+				for (int j = 0; j < i; j++) {
+					if(codigos_Ordenador[j]==codigos_Ordenador[i]){
+						verificar = true;
+					}
+				}
+				for (int j = 0; j < codigos_Ordenador_Exitentes.length; j++) {
+					if(codigos_Ordenador_Exitentes[j]==codigos_Ordenador[i]){
+						verificar = true;
+					}
+				}
+				if(verificar==true){
+					System.out.println("Ese codigo ya existe");
+				}
+			} while(verificar==true);
+
+			System.out.println(ordenador.getCodigo());
+
+			mibase.abrir(); //Abrimos BBDD
+			BBDDOrdenador.alta(ordenador, mibase.getConexion()); //creamos un ordenador
+			mibase.cerrar(); //Cerramos BBDD
+		}
+
+
+
+
+				// Listar Ordeandores
+				int numero_Ordeandor=0;
+				for (int k = 0; k < codigos_Ordenador.length; k++) {
+					numero_Ordeandor++;
+					System.out.println("Ordenador " + numero_Ordeandor + ": " +codigos_Ordenador[k]);
+				}*/
 
 		//BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
+		do{
+
+			System.out.println("Escribe el codigo del ordenador que deseas conectarte");
+			codigOr = sc.next();
+
+			ordenador = new Ordenador(codigOr);
+
+			mibase.abrir();
+			ordenador_Cod=BBDDOrdenador.buscarOrdenador(ordenador, mibase.getConexion());
+			mibase.cerrar();
+
+
+
+			if (ordenador_Cod!=""){
+				existe=true;}
+
+		}while(existe==false);
+
+
 
 		do{
 			//ESTE BUCLE SERA UTILIZADO COMO VUELTA AL PRINCIPIO DEL PROGRAMA
 			do{
-				
+
 				opcMenu=0;
-				double importe=0;
 				opcionEmple=0;
 				opcionInicial=0;
 				opcion=0;
@@ -70,8 +145,7 @@ public class Main {
 
 				opcionInicial=0;
 				opcionInicial=sc.nextInt();
-				
-				Ordenador ordenador = new Ordenador("AAA123");
+
 
 				switch (opcionInicial) {
 				case 1:
@@ -128,7 +202,7 @@ public class Main {
 											do{
 												opcMenu=0;
 												elegirPedido=0;
-											
+
 
 												//mibase.abrir();
 												//	BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
@@ -142,7 +216,7 @@ public class Main {
 												System.out.println("2.......... Cerrar Sesión");
 												opcMenu=sc.nextInt();
 												switch (opcMenu) {
-												
+
 												case 1:
 													elegirPedido=0;
 
@@ -161,10 +235,10 @@ public class Main {
 													case 1:
 														producto =new Productos("AGUA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido " + importe+ " EUROS, a su factura");
-														
+														System.out.println("Se le han añadido " + precioProducto+ " EUROS, a su factura");
+
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -174,9 +248,9 @@ public class Main {
 													case 2:
 														producto =new Productos("CAFE");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -186,9 +260,9 @@ public class Main {
 													case 3:
 														producto =new Productos("COCACOLA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -197,9 +271,9 @@ public class Main {
 													case 4:
 														producto =new Productos("CERVEZA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -209,9 +283,9 @@ public class Main {
 													case 5:
 														producto =new Productos("PALMERA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -221,9 +295,9 @@ public class Main {
 													case 6:
 														producto =new Productos("CROISANT ");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -233,10 +307,10 @@ public class Main {
 													case 7:
 														producto =new Productos("PATATAS");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
-														
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
+
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -247,10 +321,10 @@ public class Main {
 														elegirPedido=8;
 														break;
 													}
-													
+
 
 													break;
-													
+
 												}
 											}while(elegirPedido==8);
 
@@ -319,8 +393,8 @@ public class Main {
 									}else
 										if (codigo.equals("U")){
 											System.out.println("Bienvenido a zona usuario");
-											
-											
+
+
 											mibase.abrir();
 											int Numero_Conexion=BBDDConexion.getNumeroConexion(mibase.getConexion());
 											conexion = new Conexion(u, ordenador);
@@ -329,10 +403,10 @@ public class Main {
 											do{
 												opcMenu=0;
 												elegirPedido=0;
-											
+
 
 												mibase.abrir();
-													BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
+												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
 
 
@@ -342,7 +416,7 @@ public class Main {
 												System.out.println("2.......... Cerrar Sesión");
 												opcMenu=sc.nextInt();
 												switch (opcMenu) {
-												
+
 												case 1:
 													elegirPedido=0;
 
@@ -361,10 +435,10 @@ public class Main {
 													case 1:
 														producto =new Productos("AGUA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido " + importe+ " EUROS, a su factura");
-														
+														System.out.println("Se le han añadido " + precioProducto+ " EUROS, a su factura");
+
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -374,9 +448,9 @@ public class Main {
 													case 2:
 														producto =new Productos("CAFE");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -386,9 +460,9 @@ public class Main {
 													case 3:
 														producto =new Productos("COCACOLA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -397,9 +471,9 @@ public class Main {
 													case 4:
 														producto =new Productos("CERVEZA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -409,9 +483,9 @@ public class Main {
 													case 5:
 														producto =new Productos("PALMERA");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -421,9 +495,9 @@ public class Main {
 													case 6:
 														producto =new Productos("CROISSANT ");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -433,10 +507,10 @@ public class Main {
 													case 7:
 														producto =new Productos("PATATAS");
 														mibase.abrir();
-														importe=BBDDProductos.realizarPedido(producto, mibase.getConexion());
+														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + importe+ " EUROS, a su factura");
-														
+														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
+
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -448,10 +522,10 @@ public class Main {
 														break;
 													}
 													
-
+													f.setImporte(f.getImporte()+precioProducto);
 													break;
-													
-													
+
+
 												}
 											}while(elegirPedido==8);
 										}else{
@@ -486,7 +560,7 @@ public class Main {
 								}
 
 							}while(registroU==true||opcMenu==2);
-							
+
 							mibase.abrir();
 							BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 							mibase.cerrar();
@@ -541,7 +615,7 @@ public class Main {
 										System.out.println("QUE DESEA CONSULTAR?");
 										System.out.println("1-->Gestionar pedidos ");
 										System.out.println("2-->Cerrar sesion ");
-						}else
+									}else
 										System.out.println("Usted no pertenece a la zona CAFETERIA");
 
 								break;
@@ -577,17 +651,39 @@ public class Main {
 								if (codigoE==null)
 									System.out.println("Por motivos técnicos no podemos obtener la información");
 								else
+									
 									if (codigoE.equals("CIBER")||codigoE.equals("ENCARGADO")){
 										System.out.println("QUE DESEA CONSULTAR?");
 										System.out.println("1-->Ver ordenadores ");
 										System.out.println("2-->Cobrar usuario ");
 										System.out.println("3-->Cerrar sesion ");
+										opcionCiber=sc.nextInt();
+										switch (opcionCiber) {
+										case 1:
+											mibase.abrir();
+											for (int i = 0; i < BBDDOrdenador.vector(mibase.getConexion()).size(); i++) {
+												System.out.println(BBDDOrdenador.vector(mibase.getConexion()).get(i).toString());
+											}
+											mibase.cerrar();
+											break;
+										case 2:
+
+											break;
+										case 3:
+
+											break;
+
+										default:
+											break;
+										}
 
 									}
 									else
 										System.out.println("Usted no pertenece a la zona CIBER");
 
 								break;
+
+
 							case 2:
 								System.out.println("Estas saliendo");
 								break;

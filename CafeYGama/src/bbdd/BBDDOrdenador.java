@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
+import java.util.Vector;
 
 import clases.Ordenador;
 import clases.Usuario;
@@ -77,5 +79,29 @@ public class BBDDOrdenador {
 		}
 	}
 	
+	 public static Vector<Ordenador> vector(Connection c){
+		  
+		  String cadena="SELECT Codigo_Ordenador FROM ordenadores";
+		  Vector <Ordenador> lista_ordenadores=new Vector<Ordenador>();
+		  try{
+		   s=c.createStatement();
+		   reg=s.executeQuery(cadena);
+		   while ( reg.next()){
+			   
+			   String codigo=reg.getString(1);
+
+		    Ordenador o=new Ordenador (codigo);
+		    lista_ordenadores.add(o);
+		   }
+		   s.close();
+		   return lista_ordenadores;
+		  }
+		  catch ( SQLException e){
+		   //  System.out.println(e.getMessage());
+		   return null;
+		  }
+
+
+		 }
 	
 }
