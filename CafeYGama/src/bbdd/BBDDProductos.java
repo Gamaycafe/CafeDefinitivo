@@ -24,6 +24,8 @@ public class BBDDProductos {
          
      
     /**
+     * @param p se pasan los productos
+	 * @param c Se pasa la conexion
      * Este método actualiza los productos cuando quedan menos de 5, de esta forma se evita que se acaben.
      */
      
@@ -43,6 +45,9 @@ public class BBDDProductos {
      
      
     /**
+     * @param p ser pasan los datos de los productos
+	 * @param c Se pasa la conexion
+	 * @return importe precio productos
      * Este método recoge el pedido realizado por el cliente y le resta 1 producto por cada pedido.
      */
      

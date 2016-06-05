@@ -29,6 +29,7 @@ public class Main {
 		Ordenador ordenador=null;
 		Productos producto = null;
 		Factura f=null;
+		double importeTotal=0;
 		int elegirPedido=0;
 		int opcionEmple=0;
 		int opcionInicial=0;
@@ -206,7 +207,7 @@ public class Main {
 											System.out.println("No es Socio\n");
 											error=true;
 										}
-										
+
 									}while(error==true);
 									if (codigo!="U"||codigo!=""){
 										do{
@@ -340,7 +341,7 @@ public class Main {
 
 											}
 
-											f.setImporte(f.getImporte()+precioProducto);
+											importeTotal=importeTotal+precioProducto;
 
 										}while(elegirPedido==8);
 
@@ -349,6 +350,8 @@ public class Main {
 										BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 										mibase.cerrar();
 										Horafinal = LocalTime.now();
+
+										f.setImporte(importeTotal);
 
 										f.realizar_importe();
 										f.descuento();
@@ -433,7 +436,7 @@ public class Main {
 												opcMenu=0;
 												elegirPedido=0;
 												conexion = new Conexion(u, ordenador);
-												 
+
 												mibase.abrir();
 												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
@@ -557,7 +560,8 @@ public class Main {
 
 
 												}
-												f.setImporte(f.getImporte()+precioProducto);
+
+												importeTotal=importeTotal+precioProducto;
 
 
 											}while(elegirPedido==8);
@@ -566,12 +570,13 @@ public class Main {
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
 
+											f.setImporte(importeTotal);
 
 											f.realizar_importe();
 
 
 											System.out.println("Debe pagar "+f.getImporte()+"€");
-											
+
 
 											mibase.abrir();
 											BBDDFactura.crear(f, mibase.getConexion());
@@ -610,9 +615,7 @@ public class Main {
 
 							}while(registroU==true||opcMenu==2);
 
-							mibase.abrir();
-							BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
-							mibase.cerrar();
+
 						}
 
 					}while(opcionSocio==3||opcionUsuario==3);

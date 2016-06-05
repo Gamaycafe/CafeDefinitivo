@@ -20,8 +20,20 @@ public class Empleados {
 
 	/**
      * Constructor cuya finalidad es dar de alta un nuevo empleado
-     * @param codigo_Empleado,dNI,nombre,apellido,direccion,telefono,tipo_de_Contacto,antigüedad,sueldo,cargo,numero_SS 
-     * estos datos seran usados para la creacion de un nuevo empleado, menos el codigo_Empleado que sera adjudicado automaticamente por el metodo generar_codigo
+     * @param codigo_Empleado codigo_Empleado
+     * @param dNI dNI
+     * @param nombre nombre
+	 * @param apellido apellido
+	 * @param direccion direccion
+	 * @param telefono telefono
+	 * @param tipo_de_Contacto tipo_de_Contacto
+	 * @param antigüedad antigüedad
+	 * @param sueldo sueldo
+	 * @param cargo cargo
+	 * @param numero_SS numero_SS
+     * 
+     * 
+     * Estos datos seran usados para la creacion de un nuevo empleado, menos el codigo_Empleado que sera adjudicado automaticamente por el metodo generar_codigo
      */
 	
 	public Empleados(String codigo_Empleado, String dNI, String nombre, 
@@ -42,10 +54,7 @@ public class Empleados {
 		Numero_SS = numero_SS;
 	}
 	
-	/**
-     * Constructor cuya finalidad es dar de baja un empleado
-     * @param codigo_Empleado codigo_Empleado sera usado gracias ,ya que es un codigo unico y personal, para diferenciar los empleados y asi poder darles de baja
-     */
+	
 	public Empleados(String codigo_Empleado) {
 
 		Codigo_Empleado = codigo_Empleado;

@@ -16,9 +16,10 @@ import clases.*;
 
 /**
  * Esta clase tiene tres atributos: s, c reg
- * Ademas se ha generado los metods get y set del atributo Connection (c)
- * Tambien se ahn realizado tres metodos alta, buscarOrdenador,  baja y vector
+ * Además se ha generado los metodos get y set del atributo Connection (c)
+ * Tambien se han realizado cuatro metodos alta, buscarOrdenador,  baja y vector
  */
+
 public class BBDDOrdenador {
 	private static Statement s;
 	private static Connection c;
@@ -35,8 +36,8 @@ public class BBDDOrdenador {
 
 	/**
 	 * En el metodo alta crea un nuevo ordeandor en la base de datos.
-	 * @param ordenador
-	 * @param c
+	 * @param ordenador es de tipo Ordeandor, por por lo tanto le estamos damos la informacion de un ordenador.
+	 * @param c es de Tipo Connection, aqui le enviamos la informacion de al base de datos a la que queremos conectarnos.
 	 */
 	public static void alta(Ordenador ordenador, Connection c){
 		String cadena="INSERT INTO ordenadores VALUES('" + ordenador.getCodigo() +"')";
@@ -53,8 +54,8 @@ public class BBDDOrdenador {
 
 	/**
 	 * En el metodo buscarOrdenador busca un ordenador ya creado en al base de datos.
-	 * @param ordenador
-	 * @param c
+	 * @param ordenador es de tipo Ordeandor, por por lo tanto le estamos damos la informacion de un ordenador.
+	 * @param c es de Tipo Connection, aqui le enviamos la informacion de al base de datos a la que queremos conectarnos.
 	 * @return Codigo_Ordenador
 	 */
 	public static String buscarOrdenador(Ordenador ordenador, Connection c){
@@ -78,8 +79,8 @@ public class BBDDOrdenador {
 
 	/**
 	 * En el metodo baja borra un ordeandor de la base de datos.
-	 * @param ordenador
-	 * @param c
+	 * @param ordenador es de tipo Ordeandor, por por lo tanto le estamos damos la informacion de un ordenador.
+	 * @param c es de Tipo Connection, aqui le enviamos la informacion de al base de datos a la que queremos conectarnos.
 	 */
 	public static void baja(Ordenador ordenador, Connection c){
 		String cadena="DELETE FROM ordenadores WHERE codigo_ordenador='" + ordenador.getCodigo() +"'";
@@ -96,8 +97,8 @@ public class BBDDOrdenador {
 
 	/**
 	 * En el metodo vector es una lista de todos los ordenadores que existen en la base de datos.
-	 * @param c
-	 * @return vector
+	 * @param c es de Tipo Connection, aqui le enviamos la informacion de al base de datos a la que queremos conectarnos.
+	 * @return vector este metodo nos devuelve
 	 */
 	public static Vector<Ordenador> vector(Connection c){
 

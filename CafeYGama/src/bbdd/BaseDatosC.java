@@ -36,14 +36,14 @@ public class BaseDatosC{
 		this.pass = this.prop.getProperty("password");
 		this.serverName = this.prop.getProperty("server_name");
 		this.portNumber = Integer.parseInt(this.prop.getProperty("port_number"));
-
+/*
 		System.out.println("Set the following properties:");
 		System.out.println("dbms: " + dbms);
 		System.out.println("driver: " + driver);
 		System.out.println("dbName: " + dbName);
 		System.out.println("userName: " + usuario);
 		System.out.println("serverName: " + serverName);
-		System.out.println("portNumber: " + portNumber);
+		System.out.println("portNumber: " + portNumber);*/
 	   }catch(FileNotFoundException e){
 		   System.out.println("No se encuentra el archivo de configuración");  
 	   }catch(InvalidPropertiesFormatException e){

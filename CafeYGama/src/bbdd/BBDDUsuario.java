@@ -29,6 +29,8 @@ public class BBDDUsuario {
 	}
 
 	/**
+	 * @param usuario pasas la informacion del usuario
+	 * @param c pasas la conexion
      * Método que sera utilizado para la creacion de un nuevo usuario o socio, dependiendo de si tiene o no Codigo_Socio
      */
 	public static void crear(Usuario usuario, Connection c){
@@ -48,7 +50,9 @@ public class BBDDUsuario {
 
 	/**
      * Método que sera utilizado como su nombre indica, de buscar un usuario o socio en nuestra BBDD.
-     ** @return El codigo de socio del cliente que introduzcamos, siendo "U" si el cliente intoducido es usuario, pero no socio,
+     *@param u pasas los datos de usuario
+     *@param c Pasas la conexion
+     *@return El codigo de socio del cliente que introduzcamos, siendo "U" si el cliente intoducido es usuario, pero no socio,
      * o siendo un codigo de socio del estilo (letra letra letra numero) si es socio.
      */
 	public static String buscarUsuario(Usuario u, Connection c){
@@ -71,6 +75,8 @@ public class BBDDUsuario {
 		}
 }
 	/**
+	 * @param u pasas los datos de usuario
+	 * @param  c pasas los datos de conexion
      * Método que sera utilizado para la borrar un nuevo usuario o socio, de nuestra base de datos, dependiendo de si tiene o no Codigo_Socio
      */
 	public static void borrar(Usuario u, Connection c){

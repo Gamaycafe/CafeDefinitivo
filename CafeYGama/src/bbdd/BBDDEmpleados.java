@@ -32,6 +32,8 @@ public class BBDDEmpleados {
 
 
 	/**
+	 * @param empleado pasamos la informacion de empleados
+	 * @param c Se pasa la conexion
      * Método que sera utilizado para la creacion de un nuevo empleado.
      */
 	public static void crear(Empleados empleado, Connection c){
@@ -55,6 +57,8 @@ public class BBDDEmpleados {
 
 	
 	/**
+	 * @param e pasamos la informacion de empleados
+	 * @param c Se pasa la conexion
      * Método que sera utilizado como su nombre indica, de buscar un empleado en nuestra BBDD.
      ** @return El cargo del empleado que introduzcamos.
      */
@@ -80,6 +84,8 @@ public class BBDDEmpleados {
 }
 	
 	/**
+	 * @param e pasamos la informacion de empleados
+	 * @param c Se pasa la conexion
      * Método que sera utilizado para la borrar un nuevo empleado, de nuestra base de datos.
      */
 	public static void borrar(Empleados e, Connection c){

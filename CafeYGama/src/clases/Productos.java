@@ -17,10 +17,7 @@ public class Productos {
     private int Cantidad;
      
      
-    /**
-     * Constructor cuya finalidad es buscar los productos en la BBDD
-     * @param cod_Proveedor, nombre_Proveedor, tipo_de_Productos, precio, nombre, cantidad
-     */
+    
      
     public Productos(int cod_Productos, Proveedor nombre_Proveedor, 
             String tipo_de_Productos, int precio, String nombre, int cantidad) {

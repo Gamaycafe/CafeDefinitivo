@@ -25,6 +25,7 @@ public class BBDDConexion {
 		BBDDConexion.c = c;
 	}
 
+	
 	public static void crear(Conexion conexion, Connection c){
 
 
