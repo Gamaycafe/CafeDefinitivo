@@ -2,7 +2,7 @@ package bbdd;
 
 /**
  * @author: Jaime_Grisolia
- * @version: 24/05/2016
+ * @version: 05/06/2016
  */
 
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public class BBDDUsuario {
 
 	/**
      * Método que sera utilizado como su nombre indica, de buscar un usuario o socio en nuestra BBDD.
-     ** @return El codigo de socio del cliente que introduzcamos, siendo " " si el cliente intoducido es usuario, pero no socio,
+     ** @return El codigo de socio del cliente que introduzcamos, siendo "U" si el cliente intoducido es usuario, pero no socio,
      * o siendo un codigo de socio del estilo (letra letra letra numero) si es socio.
      */
 	public static String buscarUsuario(Usuario u, Connection c){
@@ -70,6 +70,9 @@ public class BBDDUsuario {
 			
 		}
 }
+	/**
+     * Método que sera utilizado para la borrar un nuevo usuario o socio, de nuestra base de datos, dependiendo de si tiene o no Codigo_Socio
+     */
 	public static void borrar(Usuario u, Connection c){
 		String cadena="DELETE FROM Usuarios WHERE DNI='" + u.getDNI()+"'";	
 		

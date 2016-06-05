@@ -2,7 +2,7 @@ package clases;
 
 /**
  * @author: Jaime_Grisolia
- * @version: 24/05/2016
+ * @version: 05/06/2016
  */
 
 public class Empleados {

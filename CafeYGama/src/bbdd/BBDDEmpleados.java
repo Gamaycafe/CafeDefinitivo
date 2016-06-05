@@ -1,7 +1,9 @@
 package bbdd;
 
-//@author Jaime_Grisolía
-
+/**
+ * @author: Jaime_Grisolia
+ * @version: 05/06/2016
+ */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +31,9 @@ public class BBDDEmpleados {
 
 
 
-
+	/**
+     * Método que sera utilizado para la creacion de un nuevo empleado.
+     */
 	public static void crear(Empleados empleado, Connection c){
 		String cadena="INSERT INTO Empleados VALUES('" + empleado.getCodigo_Empleado() 
 				+ "','" + empleado.getDNI() + "','" + empleado.getNombre() + "','" 
@@ -50,7 +54,11 @@ public class BBDDEmpleados {
 	
 
 	
-
+	/**
+     * Método que sera utilizado como su nombre indica, de buscar un empleado en nuestra BBDD.
+     ** @return El cargo del empleado que introduzcamos.
+     */
+	
 	public static String buscarEmple(Empleados e, Connection c){
 		
 		String cadena="SELECT Cargo FROM Empleados WHERE Codigo_Empleado='" +e.getCodigo_Empleado() +"'";
@@ -71,7 +79,9 @@ public class BBDDEmpleados {
 		}
 }
 	
-
+	/**
+     * Método que sera utilizado para la borrar un nuevo empleado, de nuestra base de datos.
+     */
 	public static void borrar(Empleados e, Connection c){
 		String cadena="DELETE FROM Empleados WHERE  Codigo_Empleado='" + e.getCodigo_Empleado()+"'";	
 		

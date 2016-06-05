@@ -2,8 +2,7 @@ package main;
 
 /**
  * @author: Jaime_Grisolia
- * @version: 24/05/2016
- * 
+ * @version: 05/06/2016
  */
 
 import java.sql.Connection;
@@ -54,9 +53,15 @@ public class Main {
 		emple =new Empleados("3ABC");
 		String nif="",passwd="",codigo="",codigoE="";
 		Scanner sc = new Scanner(System.in);
-		BaseDatos mibase=new BaseDatos("cibercafe");
-		//BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
+		//BaseDatos mibase=new BaseDatos("cibercafe");
+		BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
 		String codigOr="";
+
+
+		/*
+
+
+
 		String[] codigos_Ordenador = new String[20];
 		String[] codigos_Ordenador_Exitentes = new String[3];
 		codigos_Ordenador_Exitentes [0] = "AAA123";
@@ -64,9 +69,11 @@ public class Main {
 		codigos_Ordenador_Exitentes [2] = "CCC123";
 
 		boolean verificar = false;
+
+
 		//Ordenador ordenador = new Ordenador();
 
-		/*for (int i = 0; i < 20; i++) { //Generar los 20 ordenadores
+		for (int i = 0; i < 20; i++) { //Generar los 20 ordenadores
 			ordenador.generar_codigo();
 			do{
 				codigos_Ordenador[i]= ordenador.getCodigo();
@@ -91,28 +98,19 @@ public class Main {
 			BBDDOrdenador.alta(ordenador, mibase.getConexion()); //creamos un ordenador
 			mibase.cerrar(); //Cerramos BBDD
 		}
+		 */
 
-
-
-
-				// Listar Ordeandores
-				int numero_Ordeandor=0;
-				for (int k = 0; k < codigos_Ordenador.length; k++) {
-					numero_Ordeandor++;
-					System.out.println("Ordenador " + numero_Ordeandor + ": " +codigos_Ordenador[k]);
-				}*/
-
-		//BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
 		do{
+			//ESTE BUCLE SERA UTILIZADO COMO VALIDACION DEL CODIGO DEL ORDENADOR
 
 			System.out.println("Escribe el codigo del ordenador que deseas conectarte");
 			codigOr = sc.next();
 
 			ordenador = new Ordenador(codigOr);
 
-			mibase.abrir();
+			mibase.abrir();//Abrir base de datos
 			ordenador_Cod=BBDDOrdenador.buscarOrdenador(ordenador, mibase.getConexion());
-			mibase.cerrar();
+			mibase.cerrar();//Cerrar base de datos
 
 
 
@@ -202,6 +200,7 @@ public class Main {
 										else{
 
 											do{
+												//ESTE BUCLE SERA UTILIZADO COMO VUELTA A LA ZONA DE PEDIDOS
 												opcMenu=0;
 												elegirPedido=0;
 
@@ -211,7 +210,7 @@ public class Main {
 												mibase.cerrar();
 
 												Horainicio = LocalTime.now();
-												
+
 												f = new Factura("3ABC", conexion, hoy.toString());
 
 												System.out.println("Bienvenido a zona socio");
@@ -339,16 +338,16 @@ public class Main {
 											mibase.abrir();
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
-											
+
 											//f.realizar_importe();
-											
+
 											mibase.abrir();
 											BBDDFactura.crear(f, mibase.getConexion());
 											mibase.cerrar();
-											
+
 											Horafinal = LocalTime.now();
 											System.out.println("Debe pagar "+f.Importe+"€");
-											
+
 
 										}
 									break;
@@ -420,6 +419,8 @@ public class Main {
 
 
 											do{
+												//ESTE BUCLE SERA UTILIZADO COMO VUELTA A LA ZONA DE PEDIDOS
+
 												opcMenu=0;
 												elegirPedido=0;
 
@@ -512,7 +513,7 @@ public class Main {
 														if(masPedido==1){
 															elegirPedido=8;}
 														break;
-														
+
 													case 6:
 														producto =new Productos("CROISANT");
 														mibase.abrir();
@@ -558,12 +559,12 @@ public class Main {
 
 											Horafinal = LocalTime.now();
 											//Realizar descuento
-											
+
 											System.out.println(Conexion.tiempo(Horainicio, Horafinal));
-											
+
 											System.out.println("Debe pagar "+f.Importe+"€");
 											f =new Factura("3ABC", conexion,hoy.toString());
-											
+
 											//mibase.abrir();
 											//BBDDFactura.crear(f, mibase.getConexion());
 											//mibase.cerrar();
@@ -628,6 +629,7 @@ public class Main {
 						switch (opcionE) {
 						case 1: 
 							do{
+								
 								opcionEmple=0;
 								opcionCafe=0;
 								System.out.println("Zona cafeteria\n");
@@ -737,7 +739,7 @@ public class Main {
 												case 2:
 													System.out.println("Proximamente disponible");
 													break;
-												
+
 
 												default:
 													break;
