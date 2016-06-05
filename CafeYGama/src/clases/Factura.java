@@ -11,18 +11,20 @@ package clases;
 
 public class Factura {
 	private int Numero_Factura;
-	private Empleados Codigo_Empleado;
+	private String Codigo_Empleado;
 	private Conexion Numero_Conexion;
 	public static double Importe = 0;
 	private String Fecha;
 	
-	public Factura(Empleados codigo_Empleado, 
+	public Factura(String codigo_Empleado, 
 			Conexion numero_Conexion, String fecha) {
 			
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
 		Fecha = fecha;
 	}
+
+	
 
 	public int getNumero_Factura() {
 		return Numero_Factura;
@@ -31,10 +33,10 @@ public class Factura {
 		Numero_Factura = numero_Factura;
 	}
 
-	public Empleados getCodigo_Empleado() {
+	public String getCodigo_Empleado() {
 		return Codigo_Empleado;
 	}
-	public void setCodigo_Empleado(Empleados codigo_Empleado) {
+	public void setCodigo_Empleado(String codigo_Empleado) {
 		Codigo_Empleado = codigo_Empleado;
 	}
 
@@ -43,13 +45,6 @@ public class Factura {
 	}
 	public void setNumero_Conexion(Conexion numero_Conexion) {
 		Numero_Conexion = numero_Conexion;
-	}
-
-	public double getImporte() {
-		return Importe;
-	}
-	public void setImporte(Double importe) {
-		Importe = importe;
 	}
 
 	public String getFecha() {
@@ -68,17 +63,22 @@ public class Factura {
 	
 	public double realizar_importe() {
 		double tiempoConexion = Numero_Conexion.tiempo(Numero_Conexion.getHora_Inicio(), Numero_Conexion.getHora_Final());
-		Importe = Importe + tiempoConexion;
+		int euros = 0;
+		do{
+			tiempoConexion =- 0.5;
+			euros += 1;
+		} while(tiempoConexion>0);
+		
+		Importe = Importe + euros;
 		return Importe;
 	}
 	
 	public void pedidos(Productos producto){
-		Importe += producto.getPrecio()*producto.getCantidad();
+		Importe += producto.getPrecio();
 	}
 	
-	public void descuento() { // Realizar descuneto si el usuario es de tipo socio
-		if (Numero_Conexion.getUsuario().getCodigo_Socio()!=null){
+	public void descuento() { // Realizar descuento si el usuario es de tipo socio
 			Importe = Importe - (Importe*15/100);
-		}
+		
 	}
 }

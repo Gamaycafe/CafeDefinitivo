@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import clases.Factura;
 
@@ -45,10 +46,10 @@ public class BBDDFactura {
 
 
 	public static void crear (Factura factura, Connection c){
-		String cadena="INSERT INTO factura VALUES('" + factura.getNumero_Factura() 
-				+ "','" + factura.getCodigo_Empleado()+ "','" + factura.getNumero_Conexion() 
-				+ "','" + factura.getImporte() + "','" + factura.getFecha() +"')"; 	
-
+		String cadena="INSERT INTO factura VALUES(null,'" + factura.getCodigo_Empleado()+ "','" + (int)Math.floor(Math.random()*(100 -1)+1) 
+	    + "','"  + factura.Importe + "','" + LocalDate.now()+"')"; 
+		
+		
 		try{
 			s=c.createStatement();
 			s.executeUpdate(cadena);

@@ -56,9 +56,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		BaseDatos mibase=new BaseDatos("cibercafe");
 		//BaseDatosC mibase=new BaseDatosC("mysql-properties.xml");
-
 		String codigOr="";
-
 		String[] codigos_Ordenador = new String[20];
 		String[] codigos_Ordenador_Exitentes = new String[3];
 		codigos_Ordenador_Exitentes [0] = "AAA123";
@@ -213,8 +211,8 @@ public class Main {
 												mibase.cerrar();
 
 												Horainicio = LocalTime.now();
-
-												f = new Factura(emple, conexion, hoy.toString());
+												
+												f = new Factura("3ABC", conexion, hoy.toString());
 
 												System.out.println("Bienvenido a zona socio");
 												System.out.println("////¿Qué desea hacer?\\\\");
@@ -333,7 +331,7 @@ public class Main {
 
 												}
 
-												f.pedidos(producto);
+												f.Importe=f.Importe+precioProducto;
 
 											}while(elegirPedido==8);
 
@@ -341,13 +339,16 @@ public class Main {
 											mibase.abrir();
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
-
-											Horafinal = LocalTime.now();
-											System.out.println("Debe pagar "+f.getImporte()+"€");
+											
+											//f.realizar_importe();
 											
 											mibase.abrir();
 											BBDDFactura.crear(f, mibase.getConexion());
 											mibase.cerrar();
+											
+											Horafinal = LocalTime.now();
+											System.out.println("Debe pagar "+f.Importe+"€");
+											
 
 										}
 									break;
@@ -367,6 +368,7 @@ public class Main {
 
 									u = new Usuario(nombre.toUpperCase(), passwd,nif.toUpperCase(),"");
 									u.generar_codigo();//Generamos codigo de socio
+
 									mibase.abrir();
 									//Abrimos BBDD
 									BBDDUsuario.crear(u, mibase.getConexion());
@@ -426,8 +428,8 @@ public class Main {
 												mibase.cerrar();
 
 												Horainicio = LocalTime.now();
-												
-												f = new Factura(emple, conexion, hoy.toString());
+
+												f = new Factura("3ABC", conexion, hoy.toString());
 
 												System.out.println("////¿Qué desea hacer?\\\\");
 												System.out.println("1........ Realizar pedido");
@@ -456,13 +458,12 @@ public class Main {
 														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
 														System.out.println("Se le han añadido " + precioProducto+ " EUROS, a su factura");
-
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
 															elegirPedido=8;}
-														
-														f.Importe=f.Importe+precioProducto;
+
+
 														break;
 
 													case 2:
@@ -511,13 +512,13 @@ public class Main {
 														if(masPedido==1){
 															elegirPedido=8;}
 														break;
-
+														
 													case 6:
-														producto =new Productos("CROISSANT ");
+														producto =new Productos("CROISANT");
 														mibase.abrir();
 														precioProducto=BBDDProductos.realizarPedido(producto, mibase.getConexion());
 														mibase.cerrar();
-														System.out.println("Se le han añadido" + precioProducto+ " EUROS, a su factura");
+														System.out.println("Se le han añadido " + precioProducto+ " EUROS, a su factura");
 														System.out.println("VA A QUERRER ALGO MAS? (S->1/N->0)");
 														masPedido=sc.nextInt();
 														if(masPedido==1){
@@ -546,7 +547,8 @@ public class Main {
 
 
 												}
-												
+												f.Importe=f.Importe+precioProducto;
+
 
 											}while(elegirPedido==8);
 
@@ -555,8 +557,16 @@ public class Main {
 											mibase.cerrar();
 
 											Horafinal = LocalTime.now();
-
+											//Realizar descuento
+											
+											System.out.println(Conexion.tiempo(Horainicio, Horafinal));
+											
 											System.out.println("Debe pagar "+f.Importe+"€");
+											f =new Factura("3ABC", conexion,hoy.toString());
+											
+											//mibase.abrir();
+											//BBDDFactura.crear(f, mibase.getConexion());
+											//mibase.cerrar();
 
 										}else{
 
@@ -621,7 +631,7 @@ public class Main {
 								opcionEmple=0;
 								opcionCafe=0;
 								System.out.println("Zona cafeteria\n");
-								System.out.println("\n1.Iniciando Sesion \n2.Salir");
+								System.out.println("\n1.Iniciar Sesion \n2.Salir");
 								opcionEmple=sc.nextInt();
 								switch (opcionEmple) {
 								case 1:
@@ -656,7 +666,7 @@ public class Main {
 												opcionCafe=sc.nextInt();
 												switch (opcionCafe) {
 												case 1:
-
+													System.out.println("Proximamente disponible");
 													break;
 
 
@@ -683,7 +693,7 @@ public class Main {
 								opcionEmple=0;
 								opcionCiber=0;
 								System.out.println("Zona cibercafe\n");
-								System.out.println("\n1.Iniciando Sesion \n2.Salir");
+								System.out.println("\n1.Iniciar Sesion \n2.Salir");
 								opcionEmple=sc.nextInt();
 								switch (opcionEmple) {
 								case 1:
@@ -725,11 +735,9 @@ public class Main {
 													mibase.cerrar();
 													break;
 												case 2:
-
+													System.out.println("Proximamente disponible");
 													break;
-												case 3:
-
-													break;
+												
 
 												default:
 													break;

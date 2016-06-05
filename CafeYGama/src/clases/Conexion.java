@@ -66,7 +66,7 @@ public class Conexion {
 	
 	public static double tiempo(LocalTime Hora_Inicio, LocalTime Hora_Final) {
 		Duration tiempo=Duration.between(Hora_Inicio,Hora_Final);
-		double horas=tiempo.toHours();
+		double horas=tiempo.toMinutes();
 		return horas;
 	}
 	
