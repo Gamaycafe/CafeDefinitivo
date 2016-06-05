@@ -4,22 +4,26 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalTime;
 import java.util.Vector;
 
-import clases.Ordenador;
-import clases.Usuario;
+import clases.*;
 
 /**
  * @author Miguel Arada Benavides
- * 
-**/
+ * @version 5/6/2016
+ * Clase de bbdd encargada de comunicarse con la base de datos y realizar consultas con la columna Ordenadores.
+ **/
 
+/**
+ * Esta clase tiene tres atributos: s, c reg
+ * Ademas se ha generado los metods get y set del atributo Connection (c)
+ * Tambien se ahn realizado tres metodos alta, buscarOrdenador,  baja y vector
+ */
 public class BBDDOrdenador {
 	private static Statement s;
 	private static Connection c;
 	private static ResultSet reg;
-	
+
 	public static Connection getC() {
 		return c;
 	}
@@ -30,12 +34,12 @@ public class BBDDOrdenador {
 
 
 	/**
-	 * 
+	 * En el metodo alta crea un nuevo ordeandor en la base de datos.
 	 * @param ordenador
 	 * @param c
 	 */
 	public static void alta(Ordenador ordenador, Connection c){
-		String cadena="INSERT INTO ordenadores VALUES('" + ordenador.getCodigo() +"')"; 	
+		String cadena="INSERT INTO ordenadores VALUES('" + ordenador.getCodigo() +"')";
 
 		try{
 			s=c.createStatement();
@@ -46,9 +50,15 @@ public class BBDDOrdenador {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
+	/**
+	 * En el metodo buscarOrdenador busca un ordenador ya creado en al base de datos.
+	 * @param ordenador
+	 * @param c
+	 * @return Codigo_Ordenador
+	 */
 	public static String buscarOrdenador(Ordenador ordenador, Connection c){
-		
+
 		String cadena="SELECT Codigo_Ordenador  FROM ordenadores WHERE Codigo_Ordenador='" +ordenador.getCodigo() +"'";
 		try{
 			s=c.createStatement();
@@ -65,43 +75,54 @@ public class BBDDOrdenador {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * En el metodo baja borra un ordeandor de la base de datos.
+	 * @param ordenador
+	 * @param c
+	 */
 	public static void baja(Ordenador ordenador, Connection c){
-		String cadena="DELETE FROM ordenadores WHERE codigo_ordenador='" + ordenador.getCodigo() +"'";	
-		
+		String cadena="DELETE FROM ordenadores WHERE codigo_ordenador='" + ordenador.getCodigo() +"'";
+
 		try{
-		s=c.createStatement();
-		s.executeUpdate(cadena);
-		s.close();
+			s=c.createStatement();
+			s.executeUpdate(cadena);
+			s.close();
 		}
 		catch ( SQLException e){
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	 public static Vector<Ordenador> vector(Connection c){
-		  
-		  String cadena="SELECT Codigo_Ordenador FROM ordenadores";
-		  Vector <Ordenador> lista_ordenadores=new Vector<Ordenador>();
-		  try{
-		   s=c.createStatement();
-		   reg=s.executeQuery(cadena);
-		   while ( reg.next()){
-			   
-			   String codigo=reg.getString(1);
 
-		    Ordenador o=new Ordenador (codigo);
-		    lista_ordenadores.add(o);
-		   }
-		   s.close();
-		   return lista_ordenadores;
-		  }
-		  catch ( SQLException e){
-		   //  System.out.println(e.getMessage());
-		   return null;
-		  }
+	/**
+	 * En el metodo vector es una lista de todos los ordenadores que existen en la base de datos.
+	 * @param c
+	 * @return vector
+	 */
+	public static Vector<Ordenador> vector(Connection c){
+
+		String cadena="SELECT Codigo_Ordenador FROM ordenadores";
+		Vector <Ordenador> lista_ordenadores = new Vector<Ordenador>();
+		try{
+			s=c.createStatement();
+			reg=s.executeQuery(cadena);
+			while ( reg.next()){
+
+				String codigo=reg.getString(1);
+
+				Ordenador o=new Ordenador (codigo);
+				lista_ordenadores.add(o);
+			}
+			s.close();
+			return lista_ordenadores;
+		}
+		catch ( SQLException e){
+			System.out.println(e.getMessage());
+
+			return null;
+		}
 
 
-		 }
-	
+	}
+
 }

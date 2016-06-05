@@ -213,13 +213,14 @@ public class Main {
 											//ESTE BUCLE SERA UTILIZADO COMO VUELTA A LA ZONA DE PEDIDOS
 											opcMenu=0;
 											elegirPedido=0;
-
+											conexion = new Conexion(u, ordenador);
 
 											mibase.abrir();
 											BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 											mibase.cerrar();
 
-											Horainicio = LocalTime.now();
+											//Horainicio = LocalTime.now();
+
 											f = new Factura("3ABC", conexion, hoy.toString());
 
 											System.out.println("Bienvenido a zona socio");
@@ -339,7 +340,7 @@ public class Main {
 
 											}
 
-											f.Importe=f.Importe+precioProducto;
+											f.setImporte(f.getImporte()+precioProducto);
 
 										}while(elegirPedido==8);
 
@@ -349,14 +350,14 @@ public class Main {
 										mibase.cerrar();
 										Horafinal = LocalTime.now();
 
-										//f.realizar_importe();
-										f =new Factura("3ABC", conexion,hoy.toString());
+										f.realizar_importe();
+										f.descuento();
 
 										mibase.abrir();
 										BBDDFactura.crear(f, mibase.getConexion());
 										mibase.cerrar();
 
-										System.out.println("Debe pagar "+f.Importe+"€");
+										System.out.println("Debe pagar "+f.getImporte()+"€");
 
 
 									}
@@ -431,16 +432,15 @@ public class Main {
 
 												opcMenu=0;
 												elegirPedido=0;
-												
-												Horainicio = LocalTime.now();
-
+												conexion = new Conexion(u, ordenador);
+												 
 												mibase.abrir();
 												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
 
+												//Horainicio = LocalTime.now();
 
 												f = new Factura("3ABC", conexion, hoy.toString());
-
 												System.out.println("////¿Qué desea hacer?\\\\");
 												System.out.println("1........ Realizar pedido");
 												System.out.println("2.......... Cerrar Sesión");
@@ -557,7 +557,7 @@ public class Main {
 
 
 												}
-												f.Importe=f.Importe+precioProducto;
+												f.setImporte(f.getImporte()+precioProducto);
 
 
 											}while(elegirPedido==8);
@@ -566,13 +566,12 @@ public class Main {
 											BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 											mibase.cerrar();
 
-											Horafinal = LocalTime.now();
-											//Realizar descuento
+
+											f.realizar_importe();
 
 
-											System.out.println("Debe pagar "+f.Importe+"€");
+											System.out.println("Debe pagar "+f.getImporte()+"€");
 											
-											f =new Factura("3ABC", conexion,hoy.toString());
 
 											mibase.abrir();
 											BBDDFactura.crear(f, mibase.getConexion());

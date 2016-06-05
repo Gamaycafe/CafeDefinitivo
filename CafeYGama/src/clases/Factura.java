@@ -7,24 +7,31 @@ package clases;
 /**
  * @author Miguel Arada Benavides
  * 
-**/
+ **/
 
 public class Factura {
 	private int Numero_Factura;
 	private String Codigo_Empleado;
 	private Conexion Numero_Conexion;
-	public static double Importe = 0;
+	private double Importe = 0;
 	private String Fecha;
-	
+
 	public Factura(String codigo_Empleado, 
 			Conexion numero_Conexion, String fecha) {
-			
+
 		Codigo_Empleado = codigo_Empleado;
 		Numero_Conexion = numero_Conexion;
 		Fecha = fecha;
 	}
 
-	
+
+
+	public double getImporte() {
+		return Importe;
+	}
+	public void setImporte(double importe) {
+		Importe = importe;
+	}
 
 	public int getNumero_Factura() {
 		return Numero_Factura;
@@ -60,25 +67,21 @@ public class Factura {
 				+ Codigo_Empleado + ", Numero_Conexion: " + Numero_Conexion 
 				+ ", Importe: " + Importe + ", Fecha: " + Fecha;
 	}
-	
+
 	public double realizar_importe() {
-		double tiempoConexion = Numero_Conexion.tiempo(Numero_Conexion.getHora_Inicio(), Numero_Conexion.getHora_Final());
-		int euros = 0;
-		do{
-			tiempoConexion =- 0.5;
-			euros += 1;
-		} while(tiempoConexion>0);
-		
-		Importe = Importe + euros;
+		double tiempoConexion = Numero_Conexion.Duracion();
+		Importe += tiempoConexion * 0.03;
+		System.out.println("Tiempo conexion: "+tiempoConexion);
+		//Importe +=30;
 		return Importe;
 	}
-	
+
 	public void pedidos(Productos producto){
 		Importe += producto.getPrecio();
 	}
-	
+
 	public void descuento() { // Realizar descuento si el usuario es de tipo socio
-			Importe = Importe - (Importe*15/100);
-		
+		Importe = Importe - (Importe*15/100);
+
 	}
 }
