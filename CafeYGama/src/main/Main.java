@@ -220,7 +220,6 @@ public class Main {
 											mibase.cerrar();
 
 											Horainicio = LocalTime.now();
-
 											f = new Factura("3ABC", conexion, hoy.toString());
 
 											System.out.println("Bienvenido a zona socio");
@@ -348,14 +347,15 @@ public class Main {
 										mibase.abrir();
 										BBDDConexion.finalizar(conexion, ordenador, mibase.getConexion());
 										mibase.cerrar();
+										Horafinal = LocalTime.now();
 
 										//f.realizar_importe();
+										f =new Factura("3ABC", conexion,hoy.toString());
 
 										mibase.abrir();
 										BBDDFactura.crear(f, mibase.getConexion());
 										mibase.cerrar();
 
-										Horafinal = LocalTime.now();
 										System.out.println("Debe pagar "+f.Importe+"€");
 
 
@@ -431,12 +431,13 @@ public class Main {
 
 												opcMenu=0;
 												elegirPedido=0;
+												
+												Horainicio = LocalTime.now();
 
 												mibase.abrir();
 												BBDDConexion.iniciar(conexion, u, ordenador, mibase.getConexion());
 												mibase.cerrar();
 
-												Horainicio = LocalTime.now();
 
 												f = new Factura("3ABC", conexion, hoy.toString());
 
@@ -570,11 +571,12 @@ public class Main {
 
 
 											System.out.println("Debe pagar "+f.Importe+"€");
+											
 											f =new Factura("3ABC", conexion,hoy.toString());
 
-											//mibase.abrir();
-											//BBDDFactura.crear(f, mibase.getConexion());
-											//mibase.cerrar();
+											mibase.abrir();
+											BBDDFactura.crear(f, mibase.getConexion());
+											mibase.cerrar();
 
 										}else{
 

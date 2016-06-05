@@ -11,16 +11,16 @@ import clases.Factura;
 /**
  * @author Miguel Arada Benavides
  * 
-**/
+ **/
 
 public class BBDDFactura {
-	
+
 	private static Statement s;
 	private static Connection c;
 	private static ResultSet reg;
-	
-	
-	
+
+
+
 	public static Connection getC() {
 		return c;
 	}
@@ -46,10 +46,10 @@ public class BBDDFactura {
 
 
 	public static void crear (Factura factura, Connection c){
-		String cadena="INSERT INTO factura VALUES(null,'" + factura.getCodigo_Empleado()+ "','" + (int)Math.floor(Math.random()*(100 -1)+1) 
-	    + "','"  + factura.Importe + "','" + LocalDate.now()+"')"; 
-		
-		
+		String cadena="INSERT INTO factura VALUES(null,'" + factura.getCodigo_Empleado()+ "','" + "1" 
+				+ "','"  + factura.Importe + "','" + LocalDate.now()+"')"; 
+
+
 		try{
 			s=c.createStatement();
 			s.executeUpdate(cadena);
@@ -59,5 +59,5 @@ public class BBDDFactura {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 }
