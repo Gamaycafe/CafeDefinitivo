@@ -18,7 +18,7 @@ public class Productos {
      
      
     
-     
+    
     public Productos(int cod_Productos, Proveedor nombre_Proveedor, 
             String tipo_de_Productos, int precio, String nombre, int cantidad) {
          

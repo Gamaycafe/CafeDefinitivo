@@ -13,7 +13,8 @@ public class Conexion {
 	private LocalTime Hora_Final;
 	private String Dni;
 
-
+	 
+     
 	public Conexion(Usuario Usuario, 
 			Ordenador codigo_Ordenador) {
 
@@ -63,7 +64,11 @@ public class Conexion {
 				+ usuario + ", Codigo_Ordenador: "+ Codigo_Ordenador 
 				+ ", Hora_Inicio: " + Hora_Inicio + ", Hora_Final: " + Hora_Final;
 	}
-
+	  
+    /**
+     * Método que coge los tiempos en que se inicia y se finaliza la conexion..
+     ** @return El tiempo que ha estado conectado el ordenador, que es enviado a la factura.
+     */
 	public double Duracion() {
 		Duration tiempo=Duration.between(Hora_Inicio,Hora_Final);
 		double horas=tiempo.toMinutes();
